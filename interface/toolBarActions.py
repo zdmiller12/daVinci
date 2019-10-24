@@ -17,15 +17,12 @@ import pandas as pd
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
-import plotDED
 
 def saveFile ( self ):
     print 'save'
 
-
 def newFile( self ):
     print 'new'
-
 
 def openFile( self ):
     self.fileName = QFileDialog.getOpenFileName( self, 'Open CSV File', self.currentDirectory + os.path.sep + 'save', 'CSV Files (*.csv)')

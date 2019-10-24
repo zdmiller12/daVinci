@@ -4,7 +4,6 @@ import pandas as pd
 
 import include.basicFunctions as bF
 import include.helperFunctions as hF
-# import parameters.variableHandler as vH
 
 from parameters.defaults.Problem2 import Problem2 as P2
 from parameters.defaults.CandidateSystem1 import CandidateSystem1 as CS1

@@ -1,5 +1,8 @@
 # REPS
-Analysis and plotting for Repairable Equipment Population Systems (REPS) in Systems Engineering (SE)
+Model and plotting tool for Repairable Equipment Population Systems (REPS) within Systems Engineering (SE).
+
+This is a work in progress.
+
 
 --- DESCRIPTION ---
 This code serves as a tool for understanding and using the Repairable Equipment Population Systems (REPS) model,

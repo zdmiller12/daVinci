@@ -18,11 +18,10 @@ import itertools
 import numpy as np
 import pandas as pd
 
-import attributeHandler as aH
+import plotting.plot as PT
 import include.basicFunctions as bF
 from mainClassDataFrame import mainClassDataFrame as mC
 from interface.dataEdit import DataEdit as DE
-# from parameters.userDefined import userDefined as uD
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
@@ -56,7 +55,6 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         self.statusbar.showMessage('Editing data...')
         self.systems = DE.editData(self.systems)
         self.statusbar.clearMessage()
-        print self.systems['system1'].variables
 
     def pushButton_dataPlot_SLOT( self ):
         self.statusbar.showMessage('Calculating results...')
@@ -65,6 +63,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
             system_current = self.systems[system_key]
             self.setup_optimizer(system_current)
             self.table_results(system_current)
+            self.plot_results()
 
         self.statusbar.clearMessage()
     #
@@ -145,13 +144,8 @@ class daVinci( QMainWindow, Ui_MainWindow ):
             return False
 
     def plot_results( self ):
-        print self.simulated_values.loc[['n','N','M','TC'],:]
-        plot_type = 'multiple_axes'
-        x_variables = ['AELCC']
-        y_variables = ['MTBF_average', 'P0', 'PFC']
-        x_values    = self.simulated_values.loc[x_variables,:].values.tolist()
-        y_values    = self.simulated_values.loc[y_variables,:].values.tolist()
-        gP.createPlot( x_values, y_values  )
+        PT.plot( self )
+        
 
     def table_results( self, system_current ):
         table = self.table_results_system1

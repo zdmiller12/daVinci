@@ -21,10 +21,8 @@ from PyQt5.QtWidgets import *
 def saveFile ( self ):
     print 'you pressed save'
 
-
 def newFile( self ):
     print 'you pressed new'
-
 
 def openFile( self ):
     self.fileName = QFileDialog.getOpenFileName( self, 'Open CSV File', self.currentDirectory + os.path.sep + 'save', 'CSV Files (*.csv)')
