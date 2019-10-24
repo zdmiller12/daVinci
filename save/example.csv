@@ -1,0 +1,8 @@
+Name,Criterion Target,Option 1,Option 2,Option 3
+Life-Cycle Cost,0,10,20,30
+Criterion 1,100,105,109,94
+Criterion 2,100,97,103,105
+Criterion 3,100,110,90,102
+Metric 1,100,105,109,94
+Metric 2,100,97,103,105
+Metric 3,100,110,90,102
