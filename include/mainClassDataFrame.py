@@ -2,12 +2,10 @@ import pdb
 import numpy as np
 import pandas as pd
 
-import include.basicFunctions as bF
-import include.helperFunctions as hF
-
-from parameters.defaults.Problem2 import Problem2 as P2
-from parameters.defaults.CandidateSystem1 import CandidateSystem1 as CS1
-from parameters.defaults.CandidateSystem2 import CandidateSystem2 as CS2
+import basicFunctions as bF
+from defaults.Problem2 import Problem2 as P2
+from defaults.CandidateSystem1 import CandidateSystem1 as CS1
+from defaults.CandidateSystem2 import CandidateSystem2 as CS2
 
 class mainClassDataFrame:
     def __init__( self, name ):

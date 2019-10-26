@@ -12,16 +12,16 @@
 #############################################################################
 
 import pdb
-
 import os, sys
 import itertools
 import numpy as np
 import pandas as pd
 
-import plotting.plot as PT
-import include.basicFunctions as bF
-from mainClassDataFrame import mainClassDataFrame as mC
+from include import basicFunctions as bF
+from include.mainClassDataFrame import mainClassDataFrame as mC
 from interface.dataEdit import DataEdit as DE
+from output import resultsPlot as PLOT
+from output import resultsTable as TABLE
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
@@ -144,7 +144,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
             return False
 
     def plot_results( self ):
-        PT.plot( self )
+        PLOT.plot( self )
         
 
     def table_results( self, system_current ):

@@ -8,7 +8,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resource', 'dataEdit_1systems.ui')
+qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resource', 'dataEdit_base.ui')
 Ui_dataEditDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class DataEdit( QDialog, Ui_dataEditDialog ):
