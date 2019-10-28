@@ -14,8 +14,8 @@
    <string>TOPS - Tools for Optimization and Plotting in Systems Engineering</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_2">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QWidget" name="widget" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
@@ -32,9 +32,9 @@
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_dataPlot">
+           <widget class="QPushButton" name="pushButton_calculateResults">
             <property name="text">
-             <string>Plot Data</string>
+             <string>Calculate Results</string>
             </property>
            </widget>
           </item>
@@ -51,53 +51,129 @@
             </property>
            </spacer>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_editPreferences">
+            <property name="text">
+             <string>Edit Preferences</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
        <item>
-        <widget class="QTabWidget" name="tabWidget">
+        <widget class="QTabWidget" name="tabWidget_results">
          <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="tab_plot_system1">
+         <widget class="QWidget" name="tab_table">
           <attribute name="title">
-           <string>PLOT: System 1</string>
+           <string>Tabular Results</string>
           </attribute>
-          <widget class="QWidget" name="verticalLayoutWidget">
-           <property name="geometry">
-            <rect>
-             <x>19</x>
-             <y>19</y>
-             <width>471</width>
-             <height>481</height>
-            </rect>
-           </property>
-           <layout class="QVBoxLayout" name="plot_results_system1"/>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="2" column="0" colspan="3">
+            <widget class="QScrollArea" name="scrollArea_resultsTable">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_resultsTable">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1076</width>
+                <height>903</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <item row="2" column="0" colspan="2">
+                <widget class="QTableWidget" name="tableWidget_resultsTable">
+                 <property name="editTriggers">
+                  <set>QAbstractItemView::SelectedClicked</set>
+                 </property>
+                 <attribute name="horizontalHeaderVisible">
+                  <bool>true</bool>
+                 </attribute>
+                 <attribute name="verticalHeaderVisible">
+                  <bool>false</bool>
+                 </attribute>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QPushButton" name="pushButton_tablePreferences">
+             <property name="text">
+              <string>Table Preferences</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_refreshTable">
+             <property name="text">
+              <string>Refresh Table(s)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButton_cellChecker">
+             <property name="text">
+              <string>Check / Uncheck All</string>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
-         <widget class="QWidget" name="tab_table_system1">
+         <widget class="QWidget" name="tab_plot">
           <attribute name="title">
-           <string>TABLE: System 1</string>
+           <string>Plotted Results</string>
           </attribute>
-          <widget class="QTableWidget" name="table_results_system1">
-           <property name="geometry">
-            <rect>
-             <x>15</x>
-             <y>11</y>
-             <width>1101</width>
-             <height>571</height>
-            </rect>
-           </property>
-           <property name="autoFillBackground">
-            <bool>true</bool>
-           </property>
-           <attribute name="horizontalHeaderCascadingSectionResizes">
-            <bool>true</bool>
-           </attribute>
-           <attribute name="verticalHeaderVisible">
-            <bool>false</bool>
-           </attribute>
-          </widget>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="2" column="0" colspan="2">
+            <widget class="QScrollArea" name="scrollArea_resultsPlot">
+             <property name="widgetResizable">
+              <bool>true</bool>
+             </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents_resultsPlot">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1076</width>
+                <height>903</height>
+               </rect>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <item row="0" column="0">
+                <layout class="QVBoxLayout" name="verticalLayout_resultsPlot"/>
+               </item>
+              </layout>
+             </widget>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QPushButton" name="pushButton_refreshPlot">
+             <property name="text">
+              <string>Refresh Plot(s)</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="pushButton_plotPreferences">
+             <property name="text">
+              <string>Plotting Preferences</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -112,33 +188,44 @@
      <x>0</x>
      <y>0</y>
      <width>1291</width>
-     <height>25</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew"/>
-    <addaction name="actionLoad"/>
-    <addaction name="actionSave"/>
+    <addaction name="actionFile_newSystem"/>
+    <addaction name="actionFile_loadSystem"/>
+    <addaction name="actionFile_saveSystem"/>
     <addaction name="separator"/>
-    <addaction name="actionQuit"/>
+    <addaction name="actionFile_quit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionEdit_dataEdit"/>
+    <addaction name="actionEdit_calculateResults"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdit_refreshTable"/>
+    <addaction name="actionEdit_refreshPlot"/>
+    <addaction name="separator"/>
+    <addaction name="actionEdit_editPreferences"/>
    </widget>
    <widget class="QMenu" name="menuStyle">
     <property name="title">
      <string>Style</string>
     </property>
+    <addaction name="actionMaximize"/>
+    <addaction name="actionMinimize"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
     </property>
+    <addaction name="actionView_README"/>
+    <addaction name="actionView_Online_Resources"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -171,24 +258,69 @@
     <string>Save Data</string>
    </property>
   </action>
-  <action name="actionNew">
+  <action name="actionFile_newSystem">
    <property name="text">
     <string>New</string>
    </property>
   </action>
-  <action name="actionLoad">
+  <action name="actionFile_loadSystem">
    <property name="text">
     <string>Load</string>
    </property>
   </action>
-  <action name="actionSave">
+  <action name="actionFile_saveSystem">
    <property name="text">
     <string>Save</string>
    </property>
   </action>
-  <action name="actionQuit">
+  <action name="actionFile_quit">
    <property name="text">
     <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionEdit_dataEdit">
+   <property name="text">
+    <string>Edit Data</string>
+   </property>
+  </action>
+  <action name="actionEdit_calculateResults">
+   <property name="text">
+    <string>Calculate Results</string>
+   </property>
+  </action>
+  <action name="actionEdit_editPreferences">
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+  </action>
+  <action name="actionMaximize">
+   <property name="text">
+    <string>Maximize</string>
+   </property>
+  </action>
+  <action name="actionMinimize">
+   <property name="text">
+    <string>Minimize</string>
+   </property>
+  </action>
+  <action name="actionView_README">
+   <property name="text">
+    <string>View README</string>
+   </property>
+  </action>
+  <action name="actionView_Online_Resources">
+   <property name="text">
+    <string>View Online Resources</string>
+   </property>
+  </action>
+  <action name="actionEdit_refreshTable">
+   <property name="text">
+    <string>Refresh Table(s)</string>
+   </property>
+  </action>
+  <action name="actionEdit_refreshPlot">
+   <property name="text">
+    <string>Refresh Plot(s)</string>
    </property>
   </action>
  </widget>

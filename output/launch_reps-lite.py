@@ -12,18 +12,17 @@
 #############################################################################
 
 import pdb
+
 import os, sys
 import itertools
 import numpy as np
 import pandas as pd
 
-from include import basicFunctions as bF
-from include.mainClassDataFrame import mainClassDataFrame as mC
+import attributeHandler as aH
+import include.basicFunctions as bF
+from mainClassDataFrame import mainClassDataFrame as mC
 from interface.dataEdit import DataEdit as DE
-from interface.editPreferences import EditPreferences as PREF
-from interface.userActions import UserActions as ACT
-from output import resultsPlot as PLOT
-from output import resultsTable as TABLE
+# from parameters.userDefined import userDefined as uD
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
@@ -39,95 +38,28 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         QMainWindow.__init__( self )
         Ui_MainWindow.__init__( self )
         self.setupUi( self )
-        # Preferences
-        self.preferences = 4
-        # System(s) Loading
         self.systems = {}
         self.systems['system1'] = mC('system1')
-        #
-        ##
         ###
-        ##    SIGNALS
-        #
-        # File
-        self.actionFile_newSystem.triggered.connect(self.newSystem_SLOT)
-        self.actionFile_loadSystem.triggered.connect(self.loadSystem_SLOT)
-        self.actionFile_saveSystem.triggered.connect(self.saveSystem_SLOT)
-        self.actionFile_quit.triggered.connect(self.quit_SLOT)
-        # Edit
-        self.actionEdit_dataEdit.triggered.connect(self.dataEdit_SLOT)
-        self.actionEdit_calculateResults.triggered.connect(self.calculateResults_SLOT)
-        self.actionEdit_refreshTable.triggered.connect(self.dataTable_SLOT)
-        self.actionEdit_refreshPlot.triggered.connect(self.dataPlot_SLOT)
-        self.actionEdit_editPreferences.triggered.connect(self.editPreferences_SLOT)
-        # Buttons
-        self.pushButton_dataEdit.clicked.connect(self.dataEdit_SLOT)
-        self.pushButton_calculateResults.clicked.connect(self.calculateResults_SLOT)
-        self.pushButton_refreshTable.clicked.connect(self.dataTable_SLOT)
-        self.pushButton_refreshPlot.clicked.connect(self.dataPlot_SLOT)
-        self.pushButton_cellChecker.clicked.connect(self.cellChecker_SLOT)
-        self.pushButton_editPreferences.clicked.connect(self.editPreferences_SLOT)
-        # Results
-        self.tableWidget_resultsTable.itemClicked.connect(self.cellSelection_SLOT)
+        ##
+        #    SIGNALS
+        self.pushButton_dataEdit.clicked.connect(self.pushButton_dataEdit_SLOT)
+        self.pushButton_dataPlot.clicked.connect(self.pushButton_dataPlot_SLOT)
         #
         ##
         ###
     #######
     ###
-    ##    SLOTS
-    #
-    def newSystem_SLOT( self ):
-        self.statusbar.showMessage('Creating new system...')
-        self.decision = ACT.newSystem(self)
-        print self.decision
-        self.statusbar.clearMessage()
-
-    def loadSystem_SLOT( self ):
-        self.statusbar.showMessage('Loading system(s)...')
-        self.decision = ACT.loadSystem(self)
-        print self.decision
-        self.statusbar.clearMessage()
-
-    def saveSystem_SLOT( self ):
-        self.statusbar.showMessage('Saving current system(s)...')
-        self.decision = ACT.saveSystem(self)
-        print self.decision
-        self.statusbar.clearMessage()
-
-    def quit_SLOT( self ):
-        self.statusbar.showMessage('Quitting TOPS...')
-        self.decision = ACT.quit(self)
-        print self.decision
-        self.statusbar.clearMessage()
-
-    def dataEdit_SLOT( self ):
+    ##
+    #    SLOTS
+    def pushButton_dataEdit_SLOT( self ):
         self.statusbar.showMessage('Editing data...')
         self.systems = DE.editData(self.systems)
         self.statusbar.clearMessage()
+        print self.systems['system1'].variables
 
-    def calculateResults_SLOT( self ):
-        self.statusbar.showMessage('Calculating all results...')
-        for i in range(len(self.systems.keys())):
-            system_key = 'system' + str(i+1)
-            system_current = self.systems[system_key]
-            self.setup_optimizer(system_current)
-            self.table_results(system_current)
-            TABLE.check_all_iters(self)
-            self.plot_results(system_current)
-
-        self.statusbar.clearMessage()
-
-    def dataPlot_SLOT( self ):
-        self.statusbar.showMessage('Plotting selected results...')
-        for i in range(len(self.systems.keys())):
-            system_key = 'system' + str(i+1)
-            system_current = self.systems[system_key]
-            self.plot_results(system_current)
-
-        self.statusbar.clearMessage()
-
-    def dataTable_SLOT( self ):
-        self.statusbar.showMessage('Calculating tabular results...')
+    def pushButton_dataPlot_SLOT( self ):
+        self.statusbar.showMessage('Calculating results...')
         for i in range(len(self.systems.keys())):
             system_key = 'system' + str(i+1)
             system_current = self.systems[system_key]
@@ -135,21 +67,6 @@ class daVinci( QMainWindow, Ui_MainWindow ):
             self.table_results(system_current)
 
         self.statusbar.clearMessage()
-
-    def editPreferences_SLOT( self ):
-        self.statusbar.showMessage('Editing preferences...')
-        self.preferences = PREF.editPreferences(self.preferences)
-        self.statusbar.clearMessage()
-
-    def cellChecker_SLOT( self, checked ):
-        if checked:
-            TABLE.check_all_iters(self)
-        else:
-            TABLE.uncheck_all_iters(self)
-
-
-    def cellSelection_SLOT( self, item ):
-        TABLE.handle_table_click(self, item)
     #
     ##
     ###
@@ -227,13 +144,44 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         else:
             return False
 
-    def plot_results( self, system_current ):
-        PLOT.plot( self, system_current )
-        
+    def plot_results( self ):
+        print self.simulated_values.loc[['n','N','M','TC'],:]
+        plot_type = 'multiple_axes'
+        x_variables = ['AELCC']
+        y_variables = ['MTBF_average', 'P0', 'PFC']
+        x_values    = self.simulated_values.loc[x_variables,:].values.tolist()
+        y_values    = self.simulated_values.loc[y_variables,:].values.tolist()
+        gP.createPlot( x_values, y_values  )
 
     def table_results( self, system_current ):
-        TABLE.table( self, system_current )
+        table = self.table_results_system1
+        column_count = 5
+        table.setRowCount(9)
+        table.setColumnCount(column_count)
 
+        header = self.table_results_system1.horizontalHeader()
+        [header.setSectionResizeMode(i, QHeaderView.ResizeToContents) for i in range(column_count)]
+         
+        items_per_item_in_first_column = len(system_current.simulation_values['N'])
+        headers = ['Retirement Age: n', 'Number of Units: N', 
+                  'Repair Channels=2', 'Repair Channels=3', 'Repair Channels=4']
+
+        table.setHorizontalHeaderLabels(headers)
+        # set data
+        for k in range(len(system_current.simulation_values['n'])):
+            first_col_step = k*items_per_item_in_first_column
+            val_n = system_current.simulation_values['n'][k]
+            table.setItem(first_col_step, 0, QTableWidgetItem('{}'.format(val_n)))
+            for i in range(len(system_current.simulation_values['N'])):
+                val_N = system_current.simulation_values['N'][i]
+                table.setItem(first_col_step+i, 1, QTableWidgetItem('{}'.format(val_N)))
+                for j in range(len(system_current.simulation_values['M'])):
+                    val_M = system_current.simulation_values['M'][j]
+                    indy     = ((system_current.simulated_values.loc['n'] == val_n) &
+                                (system_current.simulated_values.loc['N'] == val_N) & 
+                                (system_current.simulated_values.loc['M'] == val_M) )
+                    table_value = system_current.simulated_values.loc['TC', indy].tolist()[0]
+                    table.setItem(first_col_step+i, 2+j, QTableWidgetItem('{:.0f}'.format(table_value)))
 
         
 if __name__ == '__main__':
