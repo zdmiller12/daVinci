@@ -84,13 +84,13 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         self.statusbar.clearMessage()
 
     def loadSystem_SLOT( self ):
-        self.statusbar.showMessage('Loading system(s)...')
-        self.decision = ACT.loadSystem(self)
-        print self.decision
+        self.statusbar.showMessage('Loading system...')
+        self.status = ACT.loadSystem(self)
         self.statusbar.clearMessage()
+        self.statusbar.showMessage(self.status)
 
     def saveSystem_SLOT( self ):
-        self.statusbar.showMessage('Saving current system(s)...')
+        self.statusbar.showMessage('Saving current system...')
         self.decision = ACT.saveSystem(self)
         print self.decision
         self.statusbar.clearMessage()

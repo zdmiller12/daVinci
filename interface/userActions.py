@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+from include.mainClassDataFrame import mainClassDataFrame as mC
+
 from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -22,7 +24,6 @@ class UserActions( QDialog, Ui_userActionDialog ):
         self.buttonBox.accepted.connect(self.on_accept)
         self.buttonBox.rejected.connect(self.on_reject)
 
-
     def on_accept(self):
         self.decision = 'yes'
         
@@ -38,12 +39,17 @@ class UserActions( QDialog, Ui_userActionDialog ):
 
     @staticmethod
     def loadSystem( self, parent=None ):
-        prompt_type = 'load existing system(s)'
-        dialog   = UserActions( prompt_type, parent )
-        result   = dialog.exec_()
-        return dialog.decision
-        # self.fileName = QFileDialog.getOpenFileName( self, 'Open CSV File', self.currentDirectory + os.path.sep + 'save', 'CSV Files (*.csv)')
-        # convertData( self )
+        options  = QFileDialog.Options()
+        options |= QFileDialog.DontUseNativeDialog
+        fileName, _ = QFileDialog.getOpenFileName(self,"Open System File", os.path.join(os.getcwd(), 'parameters', 'user'), 'Pickled DataFrames (*.pkl)')
+        if fileName:
+            try:
+                mC.update_variables(self.systems['system1'], fileName)
+                return 'Successfully loaded {}'.format(fileName)
+            except Exception as e:
+                print e
+                return None, 'Failed to load {}'.format(fileName)
+
 
     @staticmethod
     def saveSystem( self, parent=None ):

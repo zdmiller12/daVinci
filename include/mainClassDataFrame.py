@@ -3,14 +3,13 @@ import numpy as np
 import pandas as pd
 
 import basicFunctions as bF
-from defaults.Problem2 import Problem2 as P2
-from defaults.CandidateSystem1 import CandidateSystem1 as CS1
-from defaults.CandidateSystem2 import CandidateSystem2 as CS2
+from parameters.user.example_systems.Problem2 import Problem2 as P2
+from parameters.user.example_systems.CandidateSystem1 import CandidateSystem1 as CS1
+from parameters.user.example_systems.CandidateSystem2 import CandidateSystem2 as CS2
 
 class mainClassDataFrame:
     def __init__( self, name ):
         self.name = name
-        self.load_variables = 'problem-2'
         self.variables_all  = []
         self.variables_per_equation = {}
 
@@ -51,18 +50,23 @@ class mainClassDataFrame:
         self.variable_set = pd.DataFrame(None, index=self.variables_all_list, columns=[column_header])
         self.variable_set[column_header] = self.variables['value']
 
+        # "default" if no changes
+        # full path otherwise
     def setup_variables( self ):
-        variable_df = pd.DataFrame(None, index=self.variables_all_list, columns=self.df_column_names)
-        if self.load_variables == 'problem-2':
-            variable_df = P2(variable_df).variables
-        elif self.load_variables == 'candidate-1':
-            variable_df = CS1(variable_df).variables
-        elif self.load_variables == 'candidate-2':
-            variable_df = CS2(variable_df).variables
-        else:
-            print 'bad argument'
-            sys.exit(1)
-        return variable_df
+        df = pd.DataFrame(None, index=self.variables_all_list, columns=self.df_column_names)
+        # df['value'] = 0
+        vars_list = ['MTBF_values', 'MTTR_values', 'N', 'M', 'n', 'D']
+        for var in vars_list:
+            df.at[var, 'value'] = [0]
+        return df
+
+    def update_variables( self, variables_file ):
+        try:
+            df_loaded = pd.read_pickle(variables_file)
+            self.variables = df_loaded
+        except Exception as e:
+            print e
+            raise
 
     def return_constrained_variables( self ):
         # there has to be a better way to do this
