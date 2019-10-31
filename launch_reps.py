@@ -40,6 +40,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         Ui_MainWindow.__init__( self )
         self.setupUi( self )
         # Preferences
+        self.showMaximized()
         self.preferences = 4
         # System(s) Loading
         self.systems = {}
@@ -248,7 +249,11 @@ if __name__ == '__main__':
     screen  = app.desktop().screenGeometry()
     w, h    = screen.width(), screen.height()
     gallery = daVinci()
-    gallery.move( (0.4*w)-(0.1*h), 0.1*h )
-    gallery.resize( 0.6*w, 0.6*h )
+
+    # minimized
+    # gallery.move( (0.4*w)-(0.1*h), 0.1*h )
+    # gallery.resize( 0.6*w, 0.6*h )
+
+    # 
     gallery.show()
     sys.exit( app.exec_() )
