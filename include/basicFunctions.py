@@ -21,7 +21,7 @@ def calc_PFC(P, N):
 # equation 17.11
 # PC = annual equivalent population cost
 # Ci = annual equivalent cost per unit
-#  N = number of unites in the population
+#  N = number of units in the population
 def calc_PC(Ci, N):
     # N = int(N[0])
     PC = Ci * N

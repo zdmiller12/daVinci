@@ -48,7 +48,6 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
             self.DSBox_i.setValue(system_current.at['i',   'value'])
             # populate tables
             #  can be condensed in for loop
-
             values_MTBF = system_current.at['MTBF_values', 'value']
             values_MTTR = system_current.at['MTTR_values', 'value']
             values_N    = system_current.at['N', 'value']
@@ -56,14 +55,6 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
             values_n    = system_current.at['n', 'value']
             values_D    = system_current.at['D', 'value']
             vars_list = ['MTBF', 'MTTR', 'N', 'M', 'n', 'D']
-            # for var in vars_list:
-            #     att = getattr(self, 'table_{}'.format(var))
-            #     try:
-            #         att.setRowCount(len(eval('values_{}'.format(var))+1))
-            #         [att.setItem(i, 0, QTableWidgetItem('{}'.format(val))) for i, val in enumerate(values_MTBF)]
-            #     except:
-            #         att.setRowCount(1)
-
             self.table_MTBF.setRowCount(len(values_MTBF)+1)
             self.table_MTTR.setRowCount(len(values_MTTR)+1)
             self.table_N.setRowCount(len(values_N)+1)
@@ -112,6 +103,14 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
 
     @staticmethod
     def editData(systems, parent=None):
-        dialog   = DataEdit( systems, parent )
-        result   = dialog.exec_()
-        return dialog.systems
+        dialog = DataEdit( systems, parent )
+        affirmative = dialog.exec_()
+        try:
+            if affirmative:
+                status = 'Changes saved successfully.'
+            else:
+                status = 'Nothing changed.'
+            return dialog.systems, status
+        except Exception as e:
+            print e
+            return systems, 'Something\'s not quite right...'

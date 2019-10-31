@@ -1,17 +1,18 @@
 import pdb
+import os
 import numpy as np
 import pandas as pd
 
 import basicFunctions as bF
-from parameters.user.example_systems.Problem2 import Problem2 as P2
-from parameters.user.example_systems.CandidateSystem1 import CandidateSystem1 as CS1
-from parameters.user.example_systems.CandidateSystem2 import CandidateSystem2 as CS2
+
 
 class mainClassDataFrame:
-    def __init__( self, name ):
+    def __init__(self, name):
         self.name = name
         self.variables_all  = []
         self.variables_per_equation = {}
+
+        self.default_system_filePath = os.path.join(os.getcwd(), 'parameters', 'user', 'example_systems', 'default.pkl')
 
         for method in dir(bF):
             if method[:5] != 'calc_':
@@ -23,52 +24,37 @@ class mainClassDataFrame:
                 self.variables_all.append(args)
                 self.variables_per_equation[fun.__name__] = args[:arg_N]
 
-        self.df_column_names = ['value', 'optimize', 'integer', 'sim_increment', 'bound_low', 'bound_high', 'constraint_low', 'constraint_high', 'constrained', 'weight']
+        self.df_column_names = ['value', 'optimize', 'integer', 'sim_vals_def_type', 'sim_increment', 'bound_low', 'bound_high', 'constraint_low', 'constraint_high', 'constrained', 'weight']
         self.variables_all_list = sorted(set(sum(self.variables_all, ())))
         self.variables = self.setup_variables()
         self.simulated_values = pd.DataFrame(None, index=self.variables_all_list)
 
-    def iterations_completed( self ):
+    def iterations_completed(self):
         try:
             return len(self.simulated_values.columns)
         except:
             return 0
 
-    def set_variables_to_optimize( self, variables_to_optimize ):
-        self.variables_to_optimize = variables_to_optimize
-
-    def set_simulation_values( self, simulation_values ):
-        self.simulation_values = simulation_values
-
-    def set_simulation_array( self, simulation_array ):
-        self.simulation_array = simulation_array
-
-    def clear_simulated_values( self ):
+    def clear_simulated_values(self):
         self.simulated_values = pd.DataFrame(None, index=self.variables_all_list)
 
-    def create_new_variable_set( self, column_header ):
+    def create_new_variable_set(self, column_header):
         self.variable_set = pd.DataFrame(None, index=self.variables_all_list, columns=[column_header])
         self.variable_set[column_header] = self.variables['value']
 
-        # "default" if no changes
-        # full path otherwise
-    def setup_variables( self ):
-        df = pd.DataFrame(None, index=self.variables_all_list, columns=self.df_column_names)
-        # df['value'] = 0
-        vars_list = ['MTBF_values', 'MTTR_values', 'N', 'M', 'n', 'D']
-        for var in vars_list:
-            df.at[var, 'value'] = [0]
-        return df
+    def setup_variables(self):
+        # df = pd.DataFrame(None, index=self.variables_all_list, columns=self.df_column_names)
+        return pd.read_pickle(self.default_system_filePath)
 
-    def update_variables( self, variables_file ):
+    def update_variables(self, fileName):
         try:
-            df_loaded = pd.read_pickle(variables_file)
+            df_loaded = pd.read_pickle(fileName)
             self.variables = df_loaded
         except Exception as e:
             print e
             raise
 
-    def return_constrained_variables( self ):
+    def return_constrained_variables(self):
         # there has to be a better way to do this
         constrained = []
         for index, row in self.variables.iterrows():
@@ -76,7 +62,7 @@ class mainClassDataFrame:
                 constrained.append(row.name)
         return constrained
 
-    def process_optimized( self ):
+    def process_optimized(self):
         # retirement age need not be an integer, but that would be a useful option
         integer_variables = ['N', 'M', 'n']
         for var in optimization_variables( variables ):
@@ -85,3 +71,6 @@ class mainClassDataFrame:
             else:
                 variables.at[var, 'integer'] = False
         return variables
+
+    def save_dataFrame(self, fileName):
+        self.variables.to_pickle(fileName)

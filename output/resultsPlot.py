@@ -93,7 +93,7 @@ def create_plot( self, x_values, y_values ):
     self.verticalLayout_resultsPlot.addWidget(self.canvas)
     self.addToolBar(QtCore.Qt.BottomToolBarArea, NavigationToolbar(self.canvas, self))
 
-def plot( self, system_current ):
+def plot_results( self, system_current ):
     clear_layout(self)
 
     # easy enough to make drag and drop
