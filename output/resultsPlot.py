@@ -1,5 +1,8 @@
+import os
 import numpy as np
 from PyQt5 import QtCore
+
+from easysettings import EasySettings
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -19,83 +22,10 @@ def make_patch_spines_invisible( ax ):
         sp.set_visible(False)
 
 
-def create_plot( self, x_values, y_values ):
-    fontWeight = 'roman'
-    size_title = 'xx-large'
-    size_axes  = 'x-large'
-    size_text  = 'large'
-
-    buffer_x_axis = 0.1
-    buffer_y_axis = 0.1
-    buffer_text   = 0.8 # in % of plot height
-
-    vert_N     = len(y_values[0])
-    axes_N     = len(y_values)
-    axesPositions = -0.2 * np.arange( axes_N )[1:]
-
-    color_template = ['b', 'g', 'r', 'c', 'm']
-
-    self.fig, self.ax = plt.subplots()
-    self.fig.subplots_adjust(left=0.33)
-    self.ax = [ self.ax ]
-    funs = []
-
-    for i in range( 1, axes_N ):
-        self.ax.append( self.ax[0].twinx() )
-        self.ax[i].spines["left"].set_position(("axes", axesPositions[i-1] ))
-        # change color of spine too?  
-
-    for i, ax in enumerate(self.ax):
-        y_min = min( y_values[i] )
-        y_max = max( y_values[i] )
-
-        if len(x_values.shape) == 1:
-            x_min = min( x_values )
-            x_max = max( x_values )
-        else:
-            try:
-                x_min = min( x_values[i] )
-                x_max = max( x_values[i] )
-            except:
-                x_min = min( x_values[0] )
-                x_max = max( x_values[0] )
-
-
-        # add variable set to plot
-        f_temp = ax.scatter( x_values, y_values[i], c=color_template[i], s=1000, alpha=0.8)
-        funs.append( f_temp )
-        # with appropriate (buffered) limits
-        ax.set_xlim( x_min-(buffer_x_axis*x_min), x_max+(buffer_x_axis*x_max) )
-        ax.set_ylim( y_min-(buffer_y_axis*y_min), y_max+(buffer_y_axis*y_max) )
-
-        # formatting (mostly axes)
-        make_patch_spines_invisible( ax )
-        ax.spines["left"].set_visible( True )
-        ax.yaxis.label.set_color( color_template[i] )
-        ax.yaxis.set_label_position('left')
-        ax.yaxis.set_ticks_position('left')
-        ax.tick_params(axis='y', colors=color_template[i], labelsize=size_axes, length=19, width=2 )
-        ax.spines['right'].set_visible( False )
-        ax.spines['top'].set_visible( False )
-        ax.set_zorder( i+1 )
-
-        ax.set_ylabel(self.y_variables[i], fontsize=size_axes, fontweight=fontWeight)
-
-    for val in x_values[0]:
-        self.ax[0].axvline(x=val, c='k')
-
-    self.ax[0].tick_params(axis='x', top=False, colors='k', labelsize=size_axes, length=12, width=1, direction='inout' )
-    self.ax[0].set_xlabel( str( self.x_variables[0] ) + ' ($)', fontsize=size_axes, fontweight=fontWeight )
-    self.ax[0].set_title( 'Decision Evaluation Display', fontsize=size_title )
-    self.fig.patch.set_facecolor('w')
-
-    self.canvas = FigureCanvas(self.fig)
-    self.verticalLayout_resultsPlot.addWidget(self.canvas)
-    self.addToolBar(QtCore.Qt.BottomToolBarArea, NavigationToolbar(self.canvas, self))
-
-def plot_results( self, system_current ):
+def plot_results(self, system_current):
     clear_layout(self)
-
+    # PP = EasySettings(os.path.join(os.getcwd(), 'parameters', 'user', 'preferences_plotting-user.conf'))
+    PP = self.preferences_plotting
     # easy enough to make drag and drop
     self.x_variables = ['AELCC']
     self.y_variables = ['MTBF_average', 'P0', 'PFC']
@@ -108,17 +38,82 @@ def plot_results( self, system_current ):
     else:
         x_values = system_current.simulated_values.loc[self.x_variables,iters_to_plot].values # .tolist()
         y_values = system_current.simulated_values.loc[self.y_variables,iters_to_plot].values # .tolist()
-        create_plot( self, x_values, y_values  )
 
-def clear_layout( self ):
-    # # try:
-    # #     self.removeToolBar()
-    # # except Exception as e:
-    # #     print e
+    vert_N = len(y_values[0])
+    axes_N = len(y_values)
+    axesPositions = -PP.get('spacing_y_axes')*np.arange(axes_N)[1:]
 
-    # if hasattr(self.static_canvas, 'toolbar'):
-    #     self.removeToolBar(self.toolbar)
-    # else:
-    #     print 'no toolbar'
+    color_template = ['b', 'g', 'r', 'c', 'm']
+
+    self.fig, self.ax = plt.subplots()
+    self.fig.subplots_adjust(left=PP.get('subplots_adjust'))
+    self.ax = [self.ax]
+    funs = []
+
+    for i in range(1, axes_N):
+        self.ax.append(self.ax[0].twinx())
+        self.ax[i].spines["left"].set_position(("axes", axesPositions[i-1]))
+        # change color of spine too?  
+
+    for i, ax in enumerate(self.ax):
+        y_min = min(y_values[i])
+        y_max = max(y_values[i])
+
+        if len(x_values.shape) == 1:
+            x_min = min(x_values)
+            x_max = max(x_values)
+        else:
+            try:
+                x_min = min(x_values[i])
+                x_max = max(x_values[i])
+            except:
+                x_min = min(x_values[0])
+                x_max = max(x_values[0])
+
+        # add variable set to plot
+        # with appropriate (buffered) limits
+        ax.set_zorder(i+1)
+        ax.set_xlim(x_min-(PP.get('buffer_x_axis')*x_min), x_max+(PP.get('buffer_x_axis')*x_max))
+        ax.set_ylim(y_min-(PP.get('buffer_y_axis')*y_min), y_max+(PP.get('buffer_y_axis')*y_max))
+
+        if PP.get('h_lines'):
+            for j, val in enumerate(y_values[i]):
+                xlim = ax.get_xlim()
+                x_pos_perc = np.divide(x_values[0][j]-xlim[0], xlim[1]-xlim[0])
+                ax.axhline(y=val, xmin=-1, xmax=x_pos_perc, c=color_template[i])
+
+        # formatting (mostly axes)
+        # make_patch_spines_invisible( ax )
+        ax.spines["left"].set_visible(True)
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+        ax.yaxis.label.set_color(color_template[i])
+        ax.yaxis.set_label_position('left')
+        ax.yaxis.set_ticks_position('left')
+        ax.tick_params(axis='y', colors=color_template[i], labelsize=PP.get('size_axes'), length=PP.get('tick_length'), width=PP.get('tick_width'), direction=PP.get('tick_direct'))
+        ax.set_ylabel(self.y_variables[i], fontsize=PP.get('size_axes'), fontweight=PP.get('font'))
+        f_temp = ax.scatter(x_values, y_values[i], c=color_template[i], marker=PP.get('marker_shape'), s=PP.get('marker_size'), alpha=PP.get('marker_weight'))
+        funs.append(f_temp)
+
+    if PP.get('v_lines'):
+        for val in x_values[0]:
+            self.ax[0].axvline(x=val, c=PP.get('v_lines_color'))
+
+    self.ax[0].spines["bottom"].set_visible(True)
+    self.ax[0].tick_params(axis='x', top=False, colors='k', labelsize=PP.get('size_axes'), length=PP.get('tick_length'), width=PP.get('tick_width'), direction=PP.get('tick_direct'))
+    self.ax[0].set_xlabel('{} ($)'.format(self.x_variables[0]), fontsize=PP.get('size_axes'), fontweight=PP.get('font'))
+    self.ax[0].set_title( 'Decision Evaluation Display', fontsize=PP.get('size_title'))
+    self.fig.patch.set_facecolor('w')
+    self.ax[0].grid(PP.get('grid_show'), which=PP.get('grid_which'), axis=PP.get('grid_axis'), zorder=1)
+
+    self.canvas = FigureCanvas(self.fig)
+    self.verticalLayout_resultsPlot.addWidget(self.canvas)
+    self.toolbar = self.addToolBar(QtCore.Qt.BottomToolBarArea, NavigationToolbar(self.canvas, self))
+
+def clear_layout(self):
+    try:
+        self.removeToolBar(self.toolbar)
+    except Exception as e:
+        print e
     for i in reversed(range(self.verticalLayout_resultsPlot.count())): 
         self.verticalLayout_resultsPlot.itemAt(i).widget().setParent(None)

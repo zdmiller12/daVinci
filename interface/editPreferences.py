@@ -16,19 +16,37 @@ class EditPreferences( QDialog, Ui_editPreferencesDialog ):
         QDialog.__init__( self, parent )
         Ui_editPreferencesDialog.__init__(self, parent)
         self.setupUi( self )
-        self.preferences = preferences
+        self.PP = preferences
         self.preferences_original = preferences
+        self.buttonBox.accepted.connect(self.on_accept)
+        self.buttonBox.rejected.connect(self.on_reject)
+        self.populate()
 
+    def populate(self):
+        self.doubleSpinBox_bufferXAxis.setValue(self.PP.get('buffer_x_axis'))
+        self.spinBox_tickLength.setValue(self.PP.get('tick_length'))
+        self.spinBox_markerSize.setValue(self.PP.get('marker_size'))
+        self.comboBox_sizeTitle.setCurrentText(self.PP.get('size_title'))
 
     def on_accept(self):
-    	self.preferences = self.preferences_original
-        
+        self.PP.set('buffer_x_axis', self.doubleSpinBox_bufferXAxis.value())
+        self.PP.set('tick_length', self.spinBox_tickLength.value())
+        self.PP.set('marker_size', self.spinBox_markerSize.value())
+        self.PP.set('size_title', self.comboBox_sizeTitle.currentText())
+    	
 
     def on_reject(self):
-        self.preferences = self.preferences_original
+        self.PP = self.preferences_original
 
     @staticmethod
     def editPreferences(preferences, parent=None):
         dialog   = EditPreferences( preferences, parent )
-        result   = dialog.exec_()
-        return dialog.preferences
+        affirmative = dialog.exec_()
+        try:
+            if affirmative:
+                status = 'Successfully updated plotting preferences.'
+            else:
+                status = 'Nothing changed.'
+            return dialog.PP, status
+        except Exception as e:
+            return preferences, 'Something\'s not right...'

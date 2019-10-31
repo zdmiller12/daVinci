@@ -12,7 +12,7 @@ class mainClassDataFrame:
         self.variables_all  = []
         self.variables_per_equation = {}
 
-        self.default_system_filePath = os.path.join(os.getcwd(), 'parameters', 'user', 'example_systems', 'default.pkl')
+        self.default_system_filePath = os.path.join(os.getcwd(), 'parameters', 'user', 'systems', 'examples', 'default.pkl')
 
         for method in dir(bF):
             if method[:5] != 'calc_':

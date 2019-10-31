@@ -39,7 +39,7 @@ class UserActions( QDialog, Ui_userActionDialog ):
     def loadSystem(self, parent=None):
         options  = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open System File", os.path.join(os.getcwd(), 'parameters', 'user', 'example_systems'), 'Pickled DataFrames (*.pkl)')
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open System File", os.path.join(os.getcwd(), 'parameters', 'user', 'systems', 'examples'), 'Pickled DataFrames (*.pkl)')
         if fileName:
             try:
                 self.systems['system1'].update_variables(fileName)
@@ -51,7 +51,7 @@ class UserActions( QDialog, Ui_userActionDialog ):
 
     @staticmethod
     def saveSystem(self, parent=None):
-        fileName, _ = QFileDialog.getSaveFileName(self, "Pickle System File for Later", os.path.join(os.getcwd(), 'parameters', 'user'), '*.pkl')
+        fileName, _ = QFileDialog.getSaveFileName(self, "Pickle System File for Later", os.path.join(os.getcwd(), 'parameters', 'user', 'systems'), '*.pkl')
         if fileName:
             if '.' in fileName and fileName[-4:] != '.pkl':
                 fileName = fileName.replace(fileName[fileName.find('.'):], '.pkl')

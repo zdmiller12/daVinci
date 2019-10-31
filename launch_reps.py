@@ -22,6 +22,8 @@ from interface.userActions import UserActions as ACT
 from output import resultsPlot as PLOT
 from output import resultsTable as TABLE
 
+from easysettings import EasySettings
+
 from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -38,7 +40,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         self.setupUi( self )
         # Preferences
         self.showMaximized()
-        self.preferences = 4
+        self.preferences_plotting = EasySettings(os.path.join(os.getcwd(), 'parameters', 'user','preferences_plotting-user.conf'))
         # System(s) Loading
         self.systems = {}
         self.systems['system1'] = MCDF('system1')
@@ -65,6 +67,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         self.pushButton_refreshPlot.clicked.connect(self.dataPlot_SLOT)
         self.pushButton_cellChecker.clicked.connect(self.cellChecker_SLOT)
         self.pushButton_editPreferences.clicked.connect(self.editPreferences_SLOT)
+        self.pushButton_plotPreferences.clicked.connect(self.editPreferences_SLOT)
         # Results
         self.tableWidget_resultsTable.itemClicked.connect(self.cellSelection_SLOT)
         #
@@ -94,12 +97,12 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         status = ACT.quit(self)
         self.statusbar.showMessage(status)
 
-    def dataEdit_SLOT( self ):
+    def dataEdit_SLOT(self):
         self.statusbar.showMessage('Editing data...')
         self.systems, status = DE.editData(self.systems)
         self.statusbar.showMessage(status)
 
-    def calculateResults_SLOT( self ):
+    def calculateResults_SLOT(self):
         self.statusbar.showMessage('Calculating all results...')
         for i in range(len(self.systems.keys())):
             system_key = 'system' + str(i+1)
@@ -111,7 +114,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
 
         self.statusbar.clearMessage()
 
-    def dataPlot_SLOT( self ):
+    def dataPlot_SLOT(self):
         self.statusbar.showMessage('Plotting selected results...')
         for i in range(len(self.systems.keys())):
             system_key = 'system' + str(i+1)
@@ -120,7 +123,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
 
         self.statusbar.clearMessage()
 
-    def dataTable_SLOT( self ):
+    def dataTable_SLOT(self):
         self.statusbar.showMessage('Calculating tabular results...')
         for i in range(len(self.systems.keys())):
             system_key = 'system' + str(i+1)
@@ -130,18 +133,18 @@ class daVinci( QMainWindow, Ui_MainWindow ):
 
         self.statusbar.clearMessage()
 
-    def editPreferences_SLOT( self ):
+    def editPreferences_SLOT(self):
         self.statusbar.showMessage('Editing preferences...')
-        self.preferences = PREF.editPreferences(self.preferences)
-        self.statusbar.clearMessage()
+        self.preferences_plotting, status = PREF.editPreferences(self.preferences_plotting)
+        self.statusbar.showMessage(status)
 
-    def cellChecker_SLOT( self, checked ):
+    def cellChecker_SLOT(self, checked):
         if checked:
             TABLE.check_all_iters(self)
         else:
             TABLE.uncheck_all_iters(self)
 
-    def cellSelection_SLOT( self, item ):
+    def cellSelection_SLOT(self, item):
         TABLE.handle_table_click(self, item)
     #
     ##
