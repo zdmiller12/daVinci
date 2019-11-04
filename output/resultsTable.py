@@ -12,7 +12,7 @@ def table_results( self, system_current ):
 
     header = self.tableWidget_resultsTable.horizontalHeader()
     [header.setSectionResizeMode(i, QHeaderView.ResizeToContents) for i in range(column_count)]
-     
+    
     items_per_item_in_first_column = len(system_current.simulation_values['N'])
     headers = ['Retirement Age: n', 'Number of Units: N', 
               'Repair Channels=2', 'Repair Channels=3', 'Repair Channels=4']

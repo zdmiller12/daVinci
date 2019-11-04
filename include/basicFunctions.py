@@ -14,7 +14,8 @@ def calc_AELCC(PC, OC, RC, SC):
 # P = unit acquisition cost
 # N = number of units in population
 def calc_PFC(P, N):
-    # N = int(N[0])
+    if type(N) == list:
+        N = int(N[0])
     PFC = P * N
     return PFC
 
@@ -23,7 +24,8 @@ def calc_PFC(P, N):
 # Ci = annual equivalent cost per unit
 #  N = number of units in the population
 def calc_PC(Ci, N):
-    # N = int(N[0])
+    if type(N) == list:
+        N = int(N[0])
     PC = Ci * N
     return PC
     # or return equivalent form given by eq 8.18
@@ -33,7 +35,8 @@ def calc_PC(Ci, N):
 #  P = first or acquisition cost of a unit
 #  B = book value of a unit at the end of year n
 def calc_Ci(P, B, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     P_eq = P - B
     Ci = find_A_given_P(P_eq, i, n) + (B * i)
     return Ci
@@ -46,7 +49,8 @@ def calc_Ci(P, B, i, n):
 # n = retirement age of units (n>1)
 # L = estimated design life of the unit
 def calc_B(P, n, F, L):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     numerator = P - F
     B = P - n * np.true_divide(numerator, L)
     return B
@@ -55,9 +59,10 @@ def calc_B(P, n, F, L):
 #  EC = annual cost of energy consumed
 #  LC = annual cost of operating labor
 # PMC = annual cost of preventative maintenance
-#   N 
+#   N = number of units in population
 def calc_OC(EC, LC, PMC, N, OAOC):
-    # N = int(N[0])
+    if type(N) == list:
+        N = int(N[0])
     OC = (EC + LC + PMC + OAOC) * N
     return OC
 
@@ -66,7 +71,8 @@ def calc_OC(EC, LC, PMC, N, OAOC):
 # Cr = annual fixed and variable repair cost per repair channel
 #  M = number of repair channels
 def calc_RC(Cr, M):
-    # M = int(M[0])
+    if type(M) == list:
+        M = int(M[0])
     RC = Cr * M
     return RC
 
@@ -82,7 +88,8 @@ def calc_SC(Cs, E_S_):
 # MTBF = mean time between failures
 # if units are homogenous, aggregate MTBF for the population is just the average
 def calc_MTBF_average(n, MTBF_values):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     MTBF_average = np.average(MTBF_values[:n])
     return MTBF_average
 
@@ -90,7 +97,8 @@ def calc_MTBF_average(n, MTBF_values):
 # MTTR = mean time to repair
 # if units are homogenous, aggregate MTBF for the population is just the average
 def calc_MTTR_average(n, MTTR_values):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     MTTR_average = np.average(MTTR_values[:n])
     return MTTR_average
 
@@ -114,9 +122,12 @@ def calc_MU(MTTR_average):
 #      MU = repair rate of a repair channel
 #       M = number of service (repair) channels
 def calc_Cn_array(N, n, LAMBDA, MU, M):
-    # M = int(M[0])
-    # N = int(N[0])
-    # n = int(n[0])
+    if type(M) == list:
+        M = int(M[0])
+    if type(N) == list:
+        N = int(N[0])
+    if type(n) == list:
+        n = int(n[0])
     numerator   = np.math.factorial(N)
     parentheses = np.true_divide(LAMBDA, MU)
     Cn_array    = np.array([])
@@ -133,7 +144,8 @@ def calc_Cn_array(N, n, LAMBDA, MU, M):
 # P0 = probability that no items failed
 # N = number of units in the population
 def calc_P0(N, Cn_array):
-    # N = int(N[0])
+    if type(N) == list:
+        N = int(N[0])
     summation = np.sum(Cn_array)
     P0 = np.true_divide(1, summation)
     return P0
@@ -151,16 +163,20 @@ def calc_Pn_array(P0, Cn_array):
 #     S = number of units short
 # Pr(S) = probability of being s units short 
 def calc_Pr_array(N, D, Pn_array):
-    D = int(D[0])
-    # N = int(N[0])
+    if type(D) == list:
+        D = int(D[0])
+    if type(N) == list:
+        N = int(N[0])
     index = N - D
     Pr_array = Pn_array[index:]
     return Pr_array
 
 # probability of being no units short
 def calc_P_naught(N, D, Pn_array):
-    D = int(D[0])
-    # N = int(N[0])
+    if type(D) == list:
+        D = int(D[0])
+    if type(N) == list:
+        N = int(N[0])
     index = N - D + 1 
     P_naught = sum(Pn_array[:index])
     return P_naught
@@ -170,8 +186,10 @@ def calc_P_naught(N, D, Pn_array):
 #    D = demand ( number of required  units )
 #    N = supply ( number of available units )
 def calc_E_S_(D, N, Pn_array):
-    D = int(D[0])
-    # N = int(N[0])
+    if type(D) == list:
+        D = int(D[0])
+    if type(N) == list:
+        N = int(N[0])
     summation = 0
     # D changed to array during transition to tables for user edit
     for j in range(1, D+1):
@@ -197,7 +215,8 @@ def calc_TC(PC, OC, RC, SC):
 
 # single-payment, compound-amount
 def find_F_given_P(P, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     base = 1 + i
     F = P * np.power(base, n)
     return F
@@ -212,7 +231,8 @@ def find_P_given_F(F, i, n):
 
 # equal-payment series, compound-amount
 def find_F_given_A(A, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     base = 1 + i
     numerator = np.power(base, n) - 1
     F = np.true_divide( (A*numerator), i)
@@ -220,7 +240,8 @@ def find_F_given_A(A, i, n):
 
 # equal-payment series, sinking-fund
 def find_A_given_F(F, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     base = 1 + i
     denominator = np.power(base, n) - 1
     A = np.true_divide( (F*i), denominator)
@@ -228,7 +249,8 @@ def find_A_given_F(F, i, n):
 
 # equal-payment series, present-amount
 def find_P_given_A(A, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     base = 1 + i
     numerator = np.power(base, n) - 1
     denominator = i * np.power(base, n)
@@ -237,7 +259,8 @@ def find_P_given_A(A, i, n):
 
 # equal-payment series, capital-recovery
 def find_A_given_P(P, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
     base = 1 + i
     numerator = i * np.power(base, n)
     denominator = np.power(base, n) - 1

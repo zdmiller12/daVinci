@@ -19,6 +19,7 @@ from include.optimization import Optimization as OPT
 from interface.dataEdit import DataEdit as DE
 from interface.editPreferences import EditPreferences as PREF
 from interface.userActions import UserActions as ACT
+from output import general as GEN
 from output import resultsPlot as PLOT
 from output import resultsTable as TABLE
 
@@ -107,12 +108,17 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         for i in range(len(self.systems.keys())):
             system_key = 'system' + str(i+1)
             system_current = self.systems[system_key]
-            OPT(system_current)
-            TABLE.table_results(self, system_current)
-            TABLE.check_all_iters(self)
-            PLOT.plot_results( self, system_current)
+            valid, culprits = system_current.return_validity()
+            if not valid:
+                msg = 'System data is not valid.  Variable(s) {} cannot be 0'.format(culprits)
+                GEN.handle_invalid_system_data(self, msg)
+            else:
+                OPT(system_current)
+                TABLE.table_results(self, system_current)
+                TABLE.check_all_iters(self)
+                PLOT.plot_results(self, system_current)
+                self.statusbar.showMessage('See table and plot for results.')
 
-        self.statusbar.clearMessage()
 
     def dataPlot_SLOT(self):
         self.statusbar.showMessage('Plotting selected results...')

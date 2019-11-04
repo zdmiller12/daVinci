@@ -28,6 +28,7 @@ class mainClassDataFrame:
         self.variables_all_list = sorted(set(sum(self.variables_all, ())))
         self.variables = self.setup_variables()
         self.simulated_values = pd.DataFrame(None, index=self.variables_all_list)
+        self.invalid_if_zero_list = ['P', 'L', 'N', 'M', 'n', 'D']
 
     def iterations_completed(self):
         try:
@@ -74,3 +75,20 @@ class mainClassDataFrame:
 
     def save_dataFrame(self, fileName):
         self.variables.to_pickle(fileName)
+
+
+    def return_validity(self):
+        culprits = []
+        valid = True
+        for var in self.invalid_if_zero_list:
+            print '{}={}'.format(var, self.variables.at[var, 'value'])
+            val_s = self.variables.at[var, 'value']
+            if type(val_s) == list:
+                if any(i==0 for i in val_s):
+                    valid = False
+                    culprits.append(var)
+            else:
+                if val_s == 0:
+                    valid = False
+                    culprits.append(var)
+        return valid, culprits
