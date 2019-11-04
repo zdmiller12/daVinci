@@ -56,8 +56,8 @@
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>884</width>
-                 <height>749</height>
+                 <width>888</width>
+                 <height>743</height>
                 </rect>
                </property>
               </widget>
@@ -83,204 +83,13 @@
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>0</y>
-                 <width>884</width>
-                 <height>749</height>
+                 <y>-49</y>
+                 <width>874</width>
+                 <height>792</height>
                 </rect>
                </property>
                <layout class="QGridLayout" name="gridLayout">
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_8">
-                  <property name="text">
-                   <string>Font Style</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QLabel" name="label_7">
-                  <property name="text">
-                   <string>Title Font Size</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="0">
-                 <widget class="QLabel" name="label_6">
-                  <property name="text">
-                   <string>Axes Label Font Size</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_5">
-                  <property name="text">
-                   <string>Annotation Font Size</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="12" column="0">
-                 <widget class="QLabel" name="label_9">
-                  <property name="text">
-                   <string>Buffer Y-axis</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="0">
-                 <widget class="QLabel" name="label_15">
-                  <property name="text">
-                   <string>Axes Tick Width</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QComboBox" name="comboBox_sizeTitle">
-                  <item>
-                   <property name="text">
-                    <string>xx-large</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>x-large</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>large</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="11" column="0">
-                 <widget class="QLabel" name="label_4">
-                  <property name="text">
-                   <string>Buffer X-axis</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="10" column="0">
-                 <widget class="QLabel" name="label_11">
-                  <property name="text">
-                   <string>Axes Tick Placement</string>
-                  </property>
-                 </widget>
-                </item>
                 <item row="7" column="1">
-                 <widget class="QSpinBox" name="spinBox_markerSize">
-                  <property name="maximum">
-                   <number>1000</number>
-                  </property>
-                  <property name="singleStep">
-                   <number>10</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="14" column="0">
-                 <widget class="QLabel" name="label_18">
-                  <property name="text">
-                   <string>Multiple Y-axes Separation</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="0">
-                 <widget class="QLabel" name="label_12">
-                  <property name="text">
-                   <string>Marker Transparency (alpha)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QLabel" name="label_13">
-                  <property name="text">
-                   <string>Marker Size</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="0">
-                 <widget class="QLabel" name="label_3">
-                  <property name="text">
-                   <string>Axes Tick Length</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="11" column="1">
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_bufferXAxis">
-                  <property name="maximum">
-                   <double>1.000000000000000</double>
-                  </property>
-                  <property name="singleStep">
-                   <double>0.100000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="15" column="0">
-                 <widget class="QLabel" name="label_17">
-                  <property name="text">
-                   <string>Multiple Y-axes Plot Shift</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="0">
-                 <widget class="QLabel" name="label_10">
-                  <property name="text">
-                   <string>Marker Shape</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="1">
-                 <widget class="QSpinBox" name="spinBox_tickLength">
-                  <property name="maximum">
-                   <number>33</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="0">
-                 <widget class="QLabel" name="label_16">
-                  <property name="text">
-                   <string>Annotation Space Buffer</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="18" column="0">
-                 <widget class="QLabel" name="label_14">
-                  <property name="text">
-                   <string>Grid Direction</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="17" column="0">
-                 <widget class="QLabel" name="label">
-                  <property name="text">
-                   <string>Grid Density</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="20" column="0">
-                 <widget class="QLabel" name="label_20">
-                  <property name="text">
-                   <string>Vertical Data Line Color</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QComboBox" name="comboBox_fontStyle">
-                  <item>
-                   <property name="text">
-                    <string>xx-large</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>x-large</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>large</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="2" column="1">
                  <widget class="QComboBox" name="comboBox_axesLabelSize">
                   <item>
                    <property name="text">
@@ -299,7 +108,225 @@
                   </item>
                  </widget>
                 </item>
-                <item row="3" column="1">
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_22">
+                  <property name="text">
+                   <string>Y-Axis Middle Label</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="25" column="0">
+                 <widget class="QLabel" name="label_20">
+                  <property name="text">
+                   <string>Vertical Data Line Color</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="0">
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>Annotation Font Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="13" column="1">
+                 <widget class="QSpinBox" name="spinBox_tickLength">
+                  <property name="maximum">
+                   <number>33</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="label_19">
+                  <property name="text">
+                   <string>X-Axis Label</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="16" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_bufferXAxis">
+                  <property name="maximum">
+                   <double>1.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="17" column="0">
+                 <widget class="QLabel" name="label_9">
+                  <property name="text">
+                   <string>Buffer Y-axis</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="20" column="0">
+                 <widget class="QLabel" name="label_17">
+                  <property name="text">
+                   <string>Multiple Y-axes Plot Shift</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="22" column="0">
+                 <widget class="QLabel" name="label">
+                  <property name="text">
+                   <string>Grid Density</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="11" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_markerTransparency">
+                  <property name="maximum">
+                   <double>1.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="24" column="1">
+                 <widget class="QCheckBox" name="checkBox_vertDataLineVisibility">
+                  <property name="text">
+                   <string>Vertical Data Line Visibility</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="21" column="1">
+                 <widget class="QCheckBox" name="checkBox_gridVisibility">
+                  <property name="text">
+                   <string>Grid Visibility</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item row="19" column="0">
+                 <widget class="QLabel" name="label_18">
+                  <property name="text">
+                   <string>Multiple Y-axes Separation</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="20" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_subplotAdjust">
+                  <property name="maximum">
+                   <double>1.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="12" column="1">
+                 <widget class="QSpinBox" name="spinBox_markerSize">
+                  <property name="maximum">
+                   <number>1000</number>
+                  </property>
+                  <property name="singleStep">
+                   <number>10</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="1">
+                 <widget class="QComboBox" name="comboBox_sizeTitle">
+                  <item>
+                   <property name="text">
+                    <string>xx-large</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>x-large</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>large</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="23" column="1">
+                 <widget class="QComboBox" name="comboBox_gridDirection">
+                  <item>
+                   <property name="text">
+                    <string>horizontal</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>vertical</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>both</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="5" column="1">
+                 <widget class="QComboBox" name="comboBox_fontStyle">
+                  <item>
+                   <property name="text">
+                    <string>roman</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="23" column="0">
+                 <widget class="QLabel" name="label_14">
+                  <property name="text">
+                   <string>Grid Direction</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="14" column="1">
+                 <widget class="QSpinBox" name="spinBox_tickWidth">
+                  <property name="maximum">
+                   <number>12</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_2">
+                  <property name="text">
+                   <string>Plot Title</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="10" column="0">
+                 <widget class="QLabel" name="label_10">
+                  <property name="text">
+                   <string>Marker Shape</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="lineEdit_yLabelInner"/>
+                </item>
+                <item row="17" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_bufferYAxis">
+                  <property name="maximum">
+                   <double>1.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_21">
+                  <property name="text">
+                   <string>Y-Axis Inner Label</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="1">
                  <widget class="QComboBox" name="comboBox_annotationSize">
                   <item>
                    <property name="text">
@@ -318,8 +345,58 @@
                   </item>
                  </widget>
                 </item>
-                <item row="4" column="1">
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_annotationBuffer">
+                <item row="24" column="0">
+                 <widget class="QCheckBox" name="checkBox_horizDataLineVisibility">
+                  <property name="text">
+                   <string>Horizontal Data Line Visibility</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="11" column="0">
+                 <widget class="QLabel" name="label_12">
+                  <property name="text">
+                   <string>Marker Transparency (alpha)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="16" column="0">
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>Buffer X-axis</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="lineEdit_plotTitle"/>
+                </item>
+                <item row="15" column="1">
+                 <widget class="QComboBox" name="comboBox_tickPlacement">
+                  <item>
+                   <property name="text">
+                    <string>in</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>out</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>both</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="15" column="0">
+                 <widget class="QLabel" name="label_11">
+                  <property name="text">
+                   <string>Axes Tick Placement</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="19" column="1">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_yAxesSeparation">
                   <property name="maximum">
                    <double>1.000000000000000</double>
                   </property>
@@ -328,7 +405,63 @@
                   </property>
                  </widget>
                 </item>
-                <item row="5" column="1">
+                <item row="25" column="1">
+                 <widget class="QComboBox" name="comboBox_vertDataLineColor">
+                  <item>
+                   <property name="text">
+                    <string>black</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>blue</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>red</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>green</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>yellow</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>orange</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>cyan</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>magenta</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>white</string>
+                   </property>
+                  </item>
+                 </widget>
+                </item>
+                <item row="5" column="0">
+                 <widget class="QLabel" name="label_8">
+                  <property name="text">
+                   <string>Font Style</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="10" column="1">
                  <widget class="QComboBox" name="comboBox_markerShape">
                   <item>
                    <property name="text">
@@ -517,26 +650,35 @@
                   </item>
                  </widget>
                 </item>
-                <item row="10" column="1">
-                 <widget class="QComboBox" name="comboBox_tickPlacement">
-                  <item>
-                   <property name="text">
-                    <string>in</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>out</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>both</string>
-                   </property>
-                  </item>
+                <item row="12" column="0">
+                 <widget class="QLabel" name="label_13">
+                  <property name="text">
+                   <string>Marker Size</string>
+                  </property>
                  </widget>
                 </item>
-                <item row="17" column="1">
+                <item row="6" column="0">
+                 <widget class="QLabel" name="label_7">
+                  <property name="text">
+                   <string>Title Font Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="0">
+                 <widget class="QLabel" name="label_16">
+                  <property name="text">
+                   <string>Annotation Space Buffer</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="13" column="0">
+                 <widget class="QLabel" name="label_3">
+                  <property name="text">
+                   <string>Axes Tick Length</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="22" column="1">
                  <widget class="QComboBox" name="comboBox_gridDensity">
                   <item>
                    <property name="text">
@@ -550,141 +692,45 @@
                   </item>
                  </widget>
                 </item>
-                <item row="18" column="1">
-                 <widget class="QComboBox" name="comboBox_gridDirection">
-                  <item>
-                   <property name="text">
-                    <string>horizontal</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>vertical</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>both</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="20" column="1">
-                 <widget class="QComboBox" name="comboBox_vertDataLineColor">
-                  <item>
-                   <property name="text">
-                    <string>black</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>blue</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>red</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>green</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>yellow</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>orange</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>cyan</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>magenta</string>
-                   </property>
-                  </item>
-                  <item>
-                   <property name="text">
-                    <string>white</string>
-                   </property>
-                  </item>
-                 </widget>
-                </item>
-                <item row="6" column="1">
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_markerTransparency">
-                  <property name="maximum">
-                   <double>1.000000000000000</double>
-                  </property>
-                  <property name="singleStep">
-                   <double>0.100000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="12" column="1">
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_bufferYAxis">
-                  <property name="maximum">
-                   <double>1.000000000000000</double>
-                  </property>
-                  <property name="singleStep">
-                   <double>0.100000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="14" column="1">
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_yAxesSeparation">
-                  <property name="maximum">
-                   <double>1.000000000000000</double>
-                  </property>
-                  <property name="singleStep">
-                   <double>0.100000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="15" column="1">
-                 <widget class="QDoubleSpinBox" name="doubleSpinBox_subplotAdjust">
-                  <property name="maximum">
-                   <double>1.000000000000000</double>
-                  </property>
-                  <property name="singleStep">
-                   <double>0.100000000000000</double>
-                  </property>
-                 </widget>
-                </item>
-                <item row="16" column="1">
-                 <widget class="QCheckBox" name="checkBox_gridVisibility">
-                  <property name="text">
-                   <string>Grid Visibility</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="19" column="1">
-                 <widget class="QCheckBox" name="checkBox_vertDataLineVisibility">
-                  <property name="text">
-                   <string>Vertical Data Line Visibility</string>
-                  </property>
-                 </widget>
-                </item>
                 <item row="9" column="1">
-                 <widget class="QSpinBox" name="spinBox_tickWidth">
+                 <widget class="QDoubleSpinBox" name="doubleSpinBox_annotationBuffer">
                   <property name="maximum">
-                   <number>12</number>
+                   <double>1.000000000000000</double>
+                  </property>
+                  <property name="singleStep">
+                   <double>0.100000000000000</double>
                   </property>
                  </widget>
                 </item>
-                <item row="19" column="0">
-                 <widget class="QCheckBox" name="checkBox_horizDataLineVisibility">
+                <item row="14" column="0">
+                 <widget class="QLabel" name="label_15">
                   <property name="text">
-                   <string>Horizontal Data Line Visibility</string>
+                   <string>Axes Tick Width</string>
                   </property>
                  </widget>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="label_6">
+                  <property name="text">
+                   <string>Axes Label Font Size</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLineEdit" name="lineEdit_xLabel"/>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_23">
+                  <property name="text">
+                   <string>Y-Axis Outer Label</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLineEdit" name="lineEdit_yLabelMiddle"/>
+                </item>
+                <item row="4" column="1">
+                 <widget class="QLineEdit" name="lineEdit_yLabelOuter"/>
                 </item>
                </layout>
               </widget>
@@ -705,7 +751,7 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <property name="standardButtons">
-      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+      <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults</set>
      </property>
     </widget>
    </item>
@@ -720,8 +766,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
+     <x>257</x>
+     <y>852</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -736,8 +782,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>325</x>
+     <y>852</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

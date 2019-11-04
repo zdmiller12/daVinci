@@ -141,7 +141,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
 
     def editPreferences_SLOT(self):
         self.statusbar.showMessage('Editing preferences...')
-        self.preferences_plotting, status = PREF.editPreferences(self.preferences_plotting)
+        self.preferences_plotting, status = PREF.editPreferences(self)
         self.statusbar.showMessage(status)
 
     def cellChecker_SLOT(self, checked):
@@ -158,7 +158,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
 
         
 if __name__ == '__main__':
-
+    global daVinci_main
     # # for windows screen
     # from win32api import GetSystemMetrics
     # print("Width =", GetSystemMetrics(0))
@@ -168,12 +168,12 @@ if __name__ == '__main__':
     app     = QApplication( sys.argv )
     screen  = app.desktop().screenGeometry()
     w, h    = screen.width(), screen.height()
-    gallery = daVinci()
+    daVinci_main = daVinci()
 
     # minimized
     # gallery.move( (0.4*w)-(0.1*h), 0.1*h )
     # gallery.resize( 0.6*w, 0.6*h )
 
     # 
-    gallery.show()
+    daVinci_main.show()
     sys.exit( app.exec_() )

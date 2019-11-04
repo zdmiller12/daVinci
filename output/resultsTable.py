@@ -3,7 +3,6 @@ from PyQt5.QtWidgets import QHeaderView, QTableWidgetItem
 
 from interface.editPreferences import EditPreferences as PREF
 
-
 def table_results( self, system_current ):
     table = self.tableWidget_resultsTable
     column_count = 5

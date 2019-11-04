@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 import pdb
+from easysettings import EasySettings
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
@@ -12,20 +13,21 @@ qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 
 Ui_editPreferencesDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class EditPreferences( QDialog, Ui_editPreferencesDialog ):
-    def __init__( self, preferences, parent=None):
-        QDialog.__init__( self, parent )
+    def __init__(self, daVinci, parent=None):
+        global daVinci_main
+        QDialog.__init__(self, parent)
         Ui_editPreferencesDialog.__init__(self, parent)
-        self.setupUi( self )
-        self.PP = preferences
-        self.preferences_original = preferences
-        self.buttonBox.accepted.connect(self.on_accept)
-        self.buttonBox.rejected.connect(self.on_reject)
+        daVinci_main = daVinci
+        self.setupUi(self)
+        self.PP = daVinci.preferences_plotting
+        self.preferences_original = daVinci.preferences_plotting
+        self.buttonBox.clicked.connect(self.handle_button)
         self.populate()
 
     def populate(self):
-        self.checkBox_gridVisibility.setCheckState(self.PP.get('gridVisibility'))
-        self.checkBox_horizDataLineVisibility.setCheckState(self.PP.get('horizDataLineVisibility'))
-        self.checkBox_vertDataLineVisibility.setCheckState(self.PP.get('vertDataLineVisibility'))
+        self.checkBox_gridVisibility.setChecked(self.PP.get('gridVisibility'))
+        self.checkBox_horizDataLineVisibility.setChecked(self.PP.get('horizDataLineVisibility'))
+        self.checkBox_vertDataLineVisibility.setChecked(self.PP.get('vertDataLineVisibility'))
         self.comboBox_annotationSize.setCurrentText(self.PP.get('annotationSize'))
         self.comboBox_axesLabelSize.setCurrentText(self.PP.get('axesLabelSize'))
         self.comboBox_fontStyle.setCurrentText(self.PP.get('fontStyle'))
@@ -35,22 +37,30 @@ class EditPreferences( QDialog, Ui_editPreferencesDialog ):
         self.comboBox_sizeTitle.setCurrentText(self.PP.get('sizeTitle'))
         self.comboBox_tickPlacement.setCurrentText(self.PP.get('tickPlacement'))
         self.comboBox_vertDataLineColor.setCurrentText(self.PP.get('vertDataLineColor'))
-        self.doubleSpinBox_annotationBuffer.setValue('annotationBuffer')
+        self.doubleSpinBox_annotationBuffer.setValue(self.PP.get('annotationBuffer'))
         self.doubleSpinBox_bufferXAxis.setValue(self.PP.get('bufferXAxis'))
         self.doubleSpinBox_bufferYAxis.setValue(self.PP.get('bufferYAxis'))
         self.doubleSpinBox_markerTransparency.setValue(self.PP.get('markerTransparency'))
         self.doubleSpinBox_subplotAdjust.setValue(self.PP.get('subplotAdjust'))
         self.doubleSpinBox_yAxesSeparation.setValue(self.PP.get('yAxesSeparation'))
+        self.lineEdit_plotTitle.clear()
+        self.lineEdit_plotTitle.insert(self.PP.get('plotTitle'))
+        self.lineEdit_xLabel.clear()
+        self.lineEdit_xLabel.insert(self.PP.get('xLabel'))
+        self.lineEdit_yLabelInner.clear()
+        self.lineEdit_yLabelInner.insert(self.PP.get('yLabelInner'))
+        self.lineEdit_yLabelMiddle.clear()
+        self.lineEdit_yLabelMiddle.insert(self.PP.get('yLabelMiddle'))
+        self.lineEdit_yLabelOuter.clear()
+        self.lineEdit_yLabelOuter.insert(self.PP.get('yLabelOuter'))
         self.spinBox_markerSize.setValue(self.PP.get('markerSize'))
         self.spinBox_tickLength.setValue(self.PP.get('tickLength'))
         self.spinBox_tickWidth.setValue(self.PP.get('tickWidth'))
 
-
-
-    def on_accept(self):
-        self.PP.set('gridVisibility', self.checkBox_gridVisibility.checkState())
-        self.PP.set('horizDataLineVisibility', self.checkBox_horizDataLineVisibility.checkState())
-        self.PP.set('vertDataLineVisibility', self.checkBox_vertDataLineVisibility.checkState())
+    def apply_changes(self):
+        self.PP.set('gridVisibility', self.checkBox_gridVisibility.isChecked())
+        self.PP.set('horizDataLineVisibility', self.checkBox_horizDataLineVisibility.isChecked())
+        self.PP.set('vertDataLineVisibility', self.checkBox_vertDataLineVisibility.isChecked())
         self.PP.set('annotationSize', self.comboBox_annotationSize.currentText())
         self.PP.set('axesLabelSize', self.comboBox_axesLabelSize.currentText())
         self.PP.set('fontStyle', self.comboBox_fontStyle.currentText())
@@ -66,22 +76,43 @@ class EditPreferences( QDialog, Ui_editPreferencesDialog ):
         self.PP.set('markerTransparency', self.doubleSpinBox_markerTransparency.value())
         self.PP.set('subplotAdjust', self.doubleSpinBox_subplotAdjust.value())
         self.PP.set('yAxesSeparation', self.doubleSpinBox_yAxesSeparation.value())
+        self.PP.set('plotTitle', self.lineEdit_plotTitle.text())
+        self.PP.set('xLabel', self.lineEdit_xLabel.text())
+        self.PP.set('yLabelInner', self.lineEdit_yLabelInner.text())
+        self.PP.set('yLabelMiddle', self.lineEdit_yLabelMiddle.text())
+        self.PP.set('yLabelOuter', self.lineEdit_yLabelOuter.text())
         self.PP.set('markerSize', self.spinBox_markerSize.value())
         self.PP.set('tickLength', self.spinBox_tickLength.value())
         self.PP.set('tickWidth', self.spinBox_tickWidth.value())
     	
-
-    def on_reject(self):
+    def change_nothing(self):
         self.PP = self.preferences_original
 
+    def handle_button(self, button):
+        global daVinci_main
+        sb = self.buttonBox.standardButton(button)
+        if sb == QDialogButtonBox.Apply:
+            self.apply_changes()
+            daVinci_main.dataPlot_SLOT()
+        elif sb == QDialogButtonBox.RestoreDefaults:
+            self.restore_defaults()
+
+    def restore_defaults(self):
+        defaults = EasySettings(os.path.join(os.getcwd(), 'parameters', 'default','preferences_plotting-default.conf'))
+        for setting in defaults.list_settings():
+            self.PP.set(setting[0], setting[1])
+        self.populate()
+            
     @staticmethod
-    def editPreferences(preferences, parent=None):
-        dialog   = EditPreferences( preferences, parent )
+    def editPreferences(daVinci, parent=None):
+        dialog = EditPreferences(daVinci, parent)
         affirmative = dialog.exec_()
         try:
             if affirmative:
+                dialog.apply_changes()
                 status = 'Successfully updated plotting preferences.'
             else:
+                dialog.change_nothing()
                 status = 'Nothing changed.'
             return dialog.PP, status
         except Exception as e:

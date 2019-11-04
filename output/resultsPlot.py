@@ -13,6 +13,7 @@ from mpl_toolkits.axes_grid1 import host_subplot
 import mpl_toolkits.axisartist as AA
 
 import resultsTable as TABLE
+import markerMap as MAP
 
 
 def make_patch_spines_invisible( ax ):
@@ -21,14 +22,14 @@ def make_patch_spines_invisible( ax ):
     for sp in ax.spines.values():
         sp.set_visible(False)
 
-
 def plot_results(self, system_current):
     clear_layout(self)
-    # PP = EasySettings(os.path.join(os.getcwd(), 'parameters', 'user', 'preferences_plotting-user.conf'))
+    MM = MAP.create_marker_map()
     PP = self.preferences_plotting
     # easy enough to make drag and drop
     self.x_variables = ['AELCC']
     self.y_variables = ['MTBF_average', 'P0', 'PFC']
+    yLabels = [PP.get('yLabelInner'), PP.get('yLabelMiddle'), PP.get('yLabelOuter')]
 
     # which results to plot (selected from Tabular Results)
     iters_to_plot = TABLE.get_checked_iters(self)
@@ -41,18 +42,19 @@ def plot_results(self, system_current):
 
     vert_N = len(y_values[0])
     axes_N = len(y_values)
-    axesPositions = -PP.get('spacing_y_axes')*np.arange(axes_N)[1:]
+    axesPositions = -PP.get('yAxesSeparation')*np.arange(axes_N)[1:]
 
     color_template = ['b', 'g', 'r', 'c', 'm']
 
     self.fig, self.ax = plt.subplots()
-    self.fig.subplots_adjust(left=PP.get('subplots_adjust'))
+    self.fig.subplots_adjust(left=PP.get('subplotAdjust'))
     self.ax = [self.ax]
     funs = []
 
     for i in range(1, axes_N):
         self.ax.append(self.ax[0].twinx())
         self.ax[i].spines["left"].set_position(("axes", axesPositions[i-1]))
+        self.ax[i].spines["left"].set_color(color_template[i])
         # change color of spine too?  
 
     for i, ax in enumerate(self.ax):
@@ -73,10 +75,10 @@ def plot_results(self, system_current):
         # add variable set to plot
         # with appropriate (buffered) limits
         ax.set_zorder(i+1)
-        ax.set_xlim(x_min-(PP.get('buffer_x_axis')*x_min), x_max+(PP.get('buffer_x_axis')*x_max))
-        ax.set_ylim(y_min-(PP.get('buffer_y_axis')*y_min), y_max+(PP.get('buffer_y_axis')*y_max))
+        ax.set_xlim(x_min-(PP.get('bufferXAxis')*x_min), x_max+(PP.get('bufferXAxis')*x_max))
+        ax.set_ylim(y_min-(PP.get('bufferYAxis')*y_min), y_max+(PP.get('bufferYAxis')*y_max))
 
-        if PP.get('h_lines'):
+        if PP.get('horizDataLineVisibility'):
             for j, val in enumerate(y_values[i]):
                 xlim = ax.get_xlim()
                 x_pos_perc = np.divide(x_values[0][j]-xlim[0], xlim[1]-xlim[0])
@@ -90,30 +92,35 @@ def plot_results(self, system_current):
         ax.yaxis.label.set_color(color_template[i])
         ax.yaxis.set_label_position('left')
         ax.yaxis.set_ticks_position('left')
-        ax.tick_params(axis='y', colors=color_template[i], labelsize=PP.get('size_axes'), length=PP.get('tick_length'), width=PP.get('tick_width'), direction=PP.get('tick_direct'))
-        ax.set_ylabel(self.y_variables[i], fontsize=PP.get('size_axes'), fontweight=PP.get('font'))
-        f_temp = ax.scatter(x_values, y_values[i], c=color_template[i], marker=PP.get('marker_shape'), s=PP.get('marker_size'), alpha=PP.get('marker_weight'))
+        ax.tick_params(axis='y', colors=color_template[i], labelsize=PP.get('axesLabelSize'), length=PP.get('tickLength'), width=PP.get('tickWidth'), direction=PP.get('tickPlacement'))
+        ax.set_ylabel(yLabels[i], fontsize=PP.get('axesLabelSize'), fontweight=PP.get('fontStyle'))
+        f_temp = ax.scatter(x_values, y_values[i], c=color_template[i], marker=MM[PP.get('markerShape')], s=PP.get('markerSize'), alpha=PP.get('markerTransparency'))
         funs.append(f_temp)
 
-    if PP.get('v_lines'):
+    if PP.get('vertDataLineVisibility'):
         for val in x_values[0]:
-            self.ax[0].axvline(x=val, c=PP.get('v_lines_color'))
+            self.ax[0].axvline(x=val, c=PP.get('vertDataLineColor'))
 
     self.ax[0].spines["bottom"].set_visible(True)
-    self.ax[0].tick_params(axis='x', top=False, colors='k', labelsize=PP.get('size_axes'), length=PP.get('tick_length'), width=PP.get('tick_width'), direction=PP.get('tick_direct'))
-    self.ax[0].set_xlabel('{} ($)'.format(self.x_variables[0]), fontsize=PP.get('size_axes'), fontweight=PP.get('font'))
-    self.ax[0].set_title( 'Decision Evaluation Display', fontsize=PP.get('size_title'))
+    self.ax[0].tick_params(axis='x', top=False, colors='k', labelsize=PP.get('axesLabelSize'), length=PP.get('tickLength'), width=PP.get('tickWidth'), direction=PP.get('tickPlacement'))
+    self.ax[0].set_xlabel(PP.get('xLabel'), fontsize=PP.get('axesLabelSize'), fontweight=PP.get('fontStyle'))
+    self.ax[0].set_title(PP.get('plotTitle'), fontsize=PP.get('sizeTitle'))
     self.fig.patch.set_facecolor('w')
-    self.ax[0].grid(PP.get('grid_show'), which=PP.get('grid_which'), axis=PP.get('grid_axis'), zorder=1)
+    self.ax[0].grid(PP.get('gridVisibility'), which=PP.get('gridDensity'), axis=PP.get('gridDirection'), zorder=1)
 
     self.canvas = FigureCanvas(self.fig)
     self.verticalLayout_resultsPlot.addWidget(self.canvas)
-    self.toolbar = self.addToolBar(QtCore.Qt.BottomToolBarArea, NavigationToolbar(self.canvas, self))
+    self.toolbar = NavigationToolbar(self.canvas, self)
+    self.addToolBar(QtCore.Qt.BottomToolBarArea, self.toolbar)
 
 def clear_layout(self):
     try:
         self.removeToolBar(self.toolbar)
     except Exception as e:
-        print e
+        pass
+    try:
+        self.fig.clf()
+    except Exception as e:
+        pass
     for i in reversed(range(self.verticalLayout_resultsPlot.count())): 
         self.verticalLayout_resultsPlot.itemAt(i).widget().setParent(None)

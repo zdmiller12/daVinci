@@ -17,7 +17,6 @@ class Optimization:
             self.system.create_new_variable_set(self.column_header)
             self.system.variable_set.loc[self.system.variables_to_optimize, self.column_header] = sim_vals
             total_cost = self.calculate_total_cost()
-            print total_cost
             within_constraints = self.check_constraints()
             if within_constraints:
                 self.system.simulated_values = self.system.simulated_values.join(self.system.variable_set)
@@ -74,16 +73,15 @@ class Optimization:
                 fun = getattr(bF, equation_name)
                 new_var = fun(*send_variables)
                 try:
-                    if np.isnan(new_var):
-                        continue
+                    if not np.isnan(new_var):
+                        self.assign_variable(var, new_var)
                 except ValueError:
-                    if np.any(np.isnan(new_var)):
-                        continue                    
-                else:
-                    # log this
-                    # print('CALCULATED {} as {}'.format(var, self.system.variable_set.at[var, self.column_header]))
-                    self.system.variable_set.at[var, self.column_header] = new_var
-                    self.counter = 0
+                    if not np.any(np.isnan(new_var)):
+                        self.assign_variable(var, new_var)
+
+    def assign_variable(self, var, new_var):
+        self.system.variable_set.at[var, self.column_header] = new_var
+        self.counter = 0
 
     def check_constraints(self):
         within_constraints = True

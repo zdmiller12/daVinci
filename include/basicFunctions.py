@@ -264,7 +264,7 @@ def find_A_given_P(P, i, n):
     base = 1 + i
     numerator = i * np.power(base, n)
     denominator = np.power(base, n) - 1
-    A = np.true_divide( (P*numerator), denominator)
+    A = np.true_divide((P*numerator), denominator)
     return A
 #
 ##

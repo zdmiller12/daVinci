@@ -8,16 +8,19 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
+from include import basicFunctions as bF
+
 qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resource', 'dataEdit_base.ui')
 Ui_dataEditDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class DataEdit( QDialog, Ui_dataEditDialog ):
-    def __init__( self, systems, parent=None):
+    def __init__(self, systems, parent=None):
         QDialog.__init__( self, parent )
         Ui_dataEditDialog.__init__(self, parent)
         self.setupUi( self )
         self.systems = systems
         self.systems_original = systems
+        self.define_total_cost = False
         self.buttonBox.accepted.connect(self.on_accept)
         self.buttonBox.rejected.connect(self.on_reject)
         self.table_MTBF.setColumnCount(1)
@@ -35,17 +38,16 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
             system_current = self.systems[system_key].variables
             # populate spin boxes
             #  can be condensed in for loop
-            self.DSBox_P.setValue(system_current.at['P',    'value'])
-            self.DSBox_L.setValue(system_current.at['L',    'value'])
-            self.DSBox_F.setValue(system_current.at['F',    'value'])
-            self.DSBox_OC.setValue(system_current.at['OC',   'value'])
-            self.DSBox_EC.setValue(system_current.at['EC',   'value'])
-            self.DSBox_LC.setValue(system_current.at['LC',   'value'])
-            self.DSBox_PMC.setValue(system_current.at['PMC',  'value'])
+            self.DSBox_P.setValue(system_current.at['P', 'value'])
+            self.DSBox_L.setValue(system_current.at['L', 'value'])
+            self.DSBox_F.setValue(system_current.at['F', 'value'])
+            self.DSBox_EC.setValue(system_current.at['EC', 'value'])
+            self.DSBox_LC.setValue(system_current.at['LC', 'value'])
+            self.DSBox_PMC.setValue(system_current.at['PMC', 'value'])
             self.DSBox_OAOC.setValue(system_current.at['OAOC', 'value'])
-            self.DSBox_Cr.setValue(system_current.at['Cr',   'value'])
-            self.DSBox_Cs.setValue(system_current.at['Cs',  'value'])
-            self.DSBox_i.setValue(system_current.at['i',   'value'])
+            self.DSBox_Cr.setValue(system_current.at['Cr', 'value'])
+            self.DSBox_Cs.setValue(system_current.at['Cs', 'value'])
+            self.DSBox_i.setValue(system_current.at['i', 'value'])
             # populate tables
             #  can be condensed in for loop
             values_MTBF = system_current.at['MTBF_values', 'value']
@@ -79,7 +81,6 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
             system_current.at['P',    'value'] = self.DSBox_P.value()
             system_current.at['L',    'value'] = self.DSBox_L.value()
             system_current.at['F',    'value'] = self.DSBox_F.value()
-            system_current.at['OC',   'value'] = self.DSBox_OC.value()
             system_current.at['EC',   'value'] = self.DSBox_EC.value()
             system_current.at['LC',   'value'] = self.DSBox_LC.value()
             system_current.at['PMC',  'value'] = self.DSBox_PMC.value()
@@ -89,12 +90,12 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
             system_current.at['i',    'value'] = self.DSBox_i.value()
             # load table values into system dataframe
             #  can be condensed in for loop
-            system_current.at['MTBF_values', 'value']  = [float(self.table_MTBF.takeItem(i, 0).text()) for i in range(self.table_MTBF.rowCount()-1)]
-            system_current.at['MTTR_values', 'value']  = [float(self.table_MTTR.takeItem(i, 0).text()) for i in range(self.table_MTTR.rowCount()-1)]
-            system_current.at['N',    'value'] = [int(self.table_N.takeItem(i, 0).text()) for i in range(self.table_N.rowCount()-1)]
-            system_current.at['M',    'value'] = [int(self.table_M.takeItem(i, 0).text()) for i in range(self.table_M.rowCount()-1)]
-            system_current.at['n',    'value'] = [int(self.table_n.takeItem(i, 0).text()) for i in range(self.table_n.rowCount()-1)]
-            system_current.at['D',    'value'] = [int(self.table_D.takeItem(i, 0).text()) for i in range(self.table_D.rowCount()-1)]
+            system_current.at['MTBF_values', 'value'] = [float(self.table_MTBF.takeItem(i, 0).text()) for i in range(self.table_MTBF.rowCount()-1)]
+            system_current.at['MTTR_values', 'value'] = [float(self.table_MTTR.takeItem(i, 0).text()) for i in range(self.table_MTTR.rowCount()-1)]
+            system_current.at['N', 'value'] = [int(self.table_N.takeItem(i, 0).text()) for i in range(self.table_N.rowCount()-1)]
+            system_current.at['M', 'value'] = [int(self.table_M.takeItem(i, 0).text()) for i in range(self.table_M.rowCount()-1)]
+            system_current.at['n', 'value'] = [int(self.table_n.takeItem(i, 0).text()) for i in range(self.table_n.rowCount()-1)]
+            system_current.at['D', 'value'] = [int(self.table_D.takeItem(i, 0).text()) for i in range(self.table_D.rowCount()-1)]
 
             self.systems[system_key].variables = system_current
 
