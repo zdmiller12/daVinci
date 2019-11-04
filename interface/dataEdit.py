@@ -91,10 +91,10 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
             #  can be condensed in for loop
             system_current.at['MTBF_values', 'value']  = [float(self.table_MTBF.takeItem(i, 0).text()) for i in range(self.table_MTBF.rowCount()-1)]
             system_current.at['MTTR_values', 'value']  = [float(self.table_MTTR.takeItem(i, 0).text()) for i in range(self.table_MTTR.rowCount()-1)]
-            system_current.at['N',    'value'] = [float(self.table_N.takeItem(i, 0).text()) for i in range(self.table_N.rowCount()-1)]
-            system_current.at['M',    'value'] = [float(self.table_M.takeItem(i, 0).text()) for i in range(self.table_M.rowCount()-1)]
-            system_current.at['n',    'value'] = [float(self.table_n.takeItem(i, 0).text()) for i in range(self.table_n.rowCount()-1)]
-            system_current.at['D',    'value'] = [float(self.table_D.takeItem(i, 0).text()) for i in range(self.table_D.rowCount()-1)]
+            system_current.at['N',    'value'] = [int(self.table_N.takeItem(i, 0).text()) for i in range(self.table_N.rowCount()-1)]
+            system_current.at['M',    'value'] = [int(self.table_M.takeItem(i, 0).text()) for i in range(self.table_M.rowCount()-1)]
+            system_current.at['n',    'value'] = [int(self.table_n.takeItem(i, 0).text()) for i in range(self.table_n.rowCount()-1)]
+            system_current.at['D',    'value'] = [int(self.table_D.takeItem(i, 0).text()) for i in range(self.table_D.rowCount()-1)]
 
             self.systems[system_key].variables = system_current
 
