@@ -83,7 +83,7 @@
                <property name="geometry">
                 <rect>
                  <x>0</x>
-                 <y>-49</y>
+                 <y>0</y>
                  <width>874</width>
                  <height>792</height>
                 </rect>
@@ -383,7 +383,7 @@
                   </item>
                   <item>
                    <property name="text">
-                    <string>both</string>
+                    <string>inout</string>
                    </property>
                   </item>
                  </widget>
