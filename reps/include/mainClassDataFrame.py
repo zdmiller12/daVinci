@@ -3,7 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 
-import basicFunctions as bF
+from . import basicFunctions as bF
 
 
 class mainClassDataFrame:
@@ -52,7 +52,7 @@ class mainClassDataFrame:
             df_loaded = pd.read_pickle(fileName)
             self.variables = df_loaded
         except Exception as e:
-            print e
+            print(e)
             raise
 
     def return_constrained_variables(self):

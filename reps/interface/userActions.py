@@ -9,10 +9,10 @@ qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 
 Ui_userActionDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class UserActions( QDialog, Ui_userActionDialog ):
-    def __init__( self, prompt, prompt_details, parent=None):
-        QDialog.__init__( self, parent )
-        Ui_userActionDialog.__init__(self, parent)
-        self.setupUi( self )
+    def __init__(self, prompt, prompt_details, parent=None):
+        QDialog.__init__(self, parent)
+        Ui_userActionDialog.__init__(self)
+        self.setupUi(self)
 
         full_prompt = 'Are you sure you would like to {}?\n\n{}'.format(prompt, prompt_details)
         self.label_userPrompt.setText(full_prompt)
@@ -21,15 +21,15 @@ class UserActions( QDialog, Ui_userActionDialog ):
     @staticmethod
     def newSystem(self, parent=None):
         prompt_type =  'create a new system'
-        details  = 'Unsaved changes will be sent to space.'
-        dialog   = UserActions( prompt_type, details, parent )
+        details = 'Unsaved changes will be sent to space.'
+        dialog  = UserActions( prompt_type, details, parent )
         affirmative = dialog.exec_()
         if affirmative:
             try:
                 self.systems['system1'].update_variables(self.systems['system1'].default_system_filePath)
                 return 'Successfully created new system.'
             except Exception as e:
-                print e
+                print(e)
                 return 'Failed to create new system \n{}'.format(e)
         else:
             return 'Nothing changed.'
@@ -45,13 +45,13 @@ class UserActions( QDialog, Ui_userActionDialog ):
                 self.systems['system1'].update_variables(fileName)
                 return 'Successfully loaded {}'.format(fileName)
             except Exception as e:
-                print e
+                print(e)
                 return None, 'Failed to load {}'.format(fileName)
 
 
     @staticmethod
     def saveSystem(self, parent=None):
-        fileName, _ = QFileDialog.getSaveFileName(self, "Pickle System File for Later", os.path.join(os.getcwd(), 'parameters', 'user', 'systems'), '*.pkl')
+        fileName, _ = QFileDialog.getSaveFileName(self, "Pickle System Data for Later Use", os.path.join(os.getcwd(), 'parameters', 'user', 'systems'), '*.pkl')
         if fileName:
             if '.' in fileName and fileName[-4:] != '.pkl':
                 fileName = fileName.replace(fileName[fileName.find('.'):], '.pkl')
@@ -61,7 +61,7 @@ class UserActions( QDialog, Ui_userActionDialog ):
                 self.systems['system1'].save_dataFrame(fileName)
                 return 'Successfully saved current system as {}'.format(fileName)
             except Exception as e:
-                print e
+                print(e)
                 return None, 'Failed to load {}'.format(fileName)
 
 

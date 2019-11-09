@@ -14,10 +14,8 @@ Ui_editPreferencesDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class EditPreferences( QDialog, Ui_editPreferencesDialog ):
     def __init__(self, daVinci, parent=None):
-        global daVinci_main
         QDialog.__init__(self, parent)
-        Ui_editPreferencesDialog.__init__(self, parent)
-        daVinci_main = daVinci
+        Ui_editPreferencesDialog.__init__(self)
         self.setupUi(self)
         self.PP = daVinci.preferences_plotting
         self.preferences_original = daVinci.preferences_plotting

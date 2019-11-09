@@ -12,8 +12,8 @@ from matplotlib.figure import Figure
 from mpl_toolkits.axes_grid1 import host_subplot
 import mpl_toolkits.axisartist as AA
 
-import resultsTable as TABLE
-import markerMap as MAP
+from . import resultsTable as TABLE
+from . import markerMap as MAP
 
 
 def make_patch_spines_invisible( ax ):
@@ -35,7 +35,7 @@ def plot_results(self, system_current):
     iters_to_plot = TABLE.get_checked_iters(self)
 
     if iters_to_plot == []:
-        print 'nothing to plot'
+        print('nothing to plot')
     else:
         x_values = system_current.simulated_values.loc[self.x_variables,iters_to_plot].values # .tolist()
         y_values = system_current.simulated_values.loc[self.y_variables,iters_to_plot].values # .tolist()

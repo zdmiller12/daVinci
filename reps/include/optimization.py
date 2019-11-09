@@ -88,13 +88,13 @@ class Optimization:
         for con in self.system.return_constrained_variables():
             if not np.any(np.isnan(self.system.variables.at[con, 'constraint_low'])) and (self.system.variable_set.at[con, self.column_header] < self.system.variables.at[con, 'constraint_low']):
                 within_constraints = False
-                print self.system.variable_set[self.column_header]
-                print 'variable {} breaks low constraint at {}'.format(con, self.system.variable_set.at[con, self.column_header])
+                print(self.system.variable_set[self.column_header])
+                print('variable {} breaks low constraint at {}'.format(con, self.system.variable_set.at[con, self.column_header]))
                 break
             if not np.any(np.isnan(self.system.variables.at[con, 'constraint_high'])) and (self.system.variable_set.at[con, self.column_header] > self.system.variables.at[con, 'constraint_high']):
                 within_constraints = False
-                print self.system.variable_set[self.column_header]
-                print 'variable {} breaks high constraint at {}'.format(con, self.system.variable_set.at[con, self.column_header])
+                print(self.system.variable_set[self.column_header])
+                print('variable {} breaks high constraint at {}'.format(con, self.system.variable_set.at[con, self.column_header]))
                 break
 
         if within_constraints:

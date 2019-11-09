@@ -13,10 +13,11 @@ from include import basicFunctions as bF
 qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resource', 'dataEdit_base.ui')
 Ui_dataEditDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
+
 class DataEdit( QDialog, Ui_dataEditDialog ):
     def __init__(self, systems, parent=None):
-        QDialog.__init__( self, parent )
-        Ui_dataEditDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
+        Ui_dataEditDialog.__init__(self)
         self.setupUi( self )
         self.systems = systems
         self.systems_original = systems
@@ -113,5 +114,5 @@ class DataEdit( QDialog, Ui_dataEditDialog ):
                 status = 'Nothing changed.'
             return dialog.systems, status
         except Exception as e:
-            print e
+            print(e)
             return systems, 'Something\'s not quite right...'
