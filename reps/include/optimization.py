@@ -2,7 +2,7 @@ import itertools
 import numpy as np
 import pandas as pd
 
-from include import basicFunctions as bF
+from . import basicFunctions as FUN
    
 class Optimization:
     def __init__(self, system_current):
@@ -70,7 +70,7 @@ class Optimization:
             if have_NaN: 
                 continue
             if np.any(np.isnan(self.system.variable_set.at[var, self.column_header])):
-                fun = getattr(bF, equation_name)
+                fun = getattr(FUN, equation_name)
                 new_var = fun(*send_variables)
                 try:
                     if not np.isnan(new_var):
@@ -80,7 +80,7 @@ class Optimization:
                         self.assign_variable(var, new_var)
 
     def assign_variable(self, var, new_var):
-        print('new variable {}={}'.format(var, new_var))
+        # print('new variable {}={}'.format(var, new_var))
         self.system.variable_set.at[var, self.column_header] = new_var
         self.counter = 0
 

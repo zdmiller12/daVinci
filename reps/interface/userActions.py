@@ -1,14 +1,14 @@
 import os
 
-import installer as INT
+from reps import systemInfo as INFO
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-# qtCreatorFile = os.path.join('.', 'resource', 'userAction.ui')
-qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'userAction.ui'))
+
+qtCreatorFile = INFO.resource_path(os.path.join('.', 'reps', 'resource', 'userAction.ui'))
 Ui_userActionDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class UserActions( QDialog, Ui_userActionDialog ):
@@ -24,7 +24,7 @@ class UserActions( QDialog, Ui_userActionDialog ):
     @staticmethod
     def newSystem(self, parent=None):
         prompt_type =  'create a new system'
-        details = 'Unsaved changes will be sent to space.'
+        details = 'Unsaved changes will be sent to outer space.'
         dialog  = UserActions( prompt_type, details, parent )
         affirmative = dialog.exec_()
         if affirmative:
@@ -42,7 +42,7 @@ class UserActions( QDialog, Ui_userActionDialog ):
     def loadSystem(self, parent=None):
         options  = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
-        fileName, _ = QFileDialog.getOpenFileName(self, "Open System File", os.path.join(os.getcwd(), 'parameters', 'user', 'systems', 'examples'), 'Pickled DataFrames (*.pkl)')
+        fileName, _ = QFileDialog.getOpenFileName(self, "Open System File", os.path.join(os.getcwd(), 'reps', 'parameters', 'user', 'systems', 'examples'), 'Pickled DataFrames (*.pkl)')
         if fileName:
             try:
                 self.systems['system1'].update_variables(fileName)
@@ -54,7 +54,7 @@ class UserActions( QDialog, Ui_userActionDialog ):
 
     @staticmethod
     def saveSystem(self, parent=None):
-        fileName, _ = QFileDialog.getSaveFileName(self, "Pickle System Data for Later Use", os.path.join(os.getcwd(), 'parameters', 'user', 'systems'), '*.pkl')
+        fileName, _ = QFileDialog.getSaveFileName(self, "Pickle System Data for Later Use", os.path.join(os.getcwd(), 'reps', 'parameters', 'user', 'systems'), '*.pkl')
         if fileName:
             if '.' in fileName and fileName[-4:] != '.pkl':
                 fileName = fileName.replace(fileName[fileName.find('.'):], '.pkl')

@@ -1,24 +1,22 @@
 import os
 import pandas as pd
 
-import installer as INT
+from reps import systemInfo as INFO
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-from include import basicFunctions as bF
 
-# qtCreatorFile = os.path.join('.', 'resource', 'dataEdit_base.ui')
-qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'dataEdit_base.ui'))
+qtCreatorFile = INFO.resource_path(os.path.join('.', 'reps', 'resource', 'dataEdit_base.ui'))
 Ui_dataEditDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class DataEdit( QDialog, Ui_dataEditDialog ):
     def __init__(self, systems, parent=None):
         QDialog.__init__(self, parent)
         Ui_dataEditDialog.__init__(self)
-        self.setupUi( self )
+        self.setupUi(self)
         self.systems = systems
         self.systems_original = systems
         self.define_total_cost = False

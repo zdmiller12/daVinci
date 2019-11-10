@@ -1,5 +1,5 @@
 def create_marker_map():
-    d = markerMap()
+    d = DoubleDict()
     possible_markers = [
         [".", "point"],
         [",", "pixel"],
@@ -44,7 +44,7 @@ def create_marker_map():
 
     return d
 
-class markerMap(dict):
+class DoubleDict(dict):
     def __setitem__(self, key, value):
         if key in self:
             del self[key]

@@ -1,16 +1,21 @@
-import pdb
+"""
+Created by Zack Miller
+Version 2019.11.10
+
+Contact: zdmiller12@gmail.com
+""" 
+
 import os, sys
 
-import installer as INT
-
-from include.mainClassDataFrame import mainClassDataFrame as MCDF
-from include.optimization import Optimization as OPT
-from interface.dataEdit import DataEdit as DE
-from interface.editPreferences import EditPreferences as PREF
-from interface.userActions import UserActions as ACT
-from output import general as GEN
-from output import resultsPlot as PLOT
-from output import resultsTable as TABLE
+from reps import systemInfo as INFO
+from reps.include.mainClassDataFrame import MainClassDataFrame as MCDF
+from reps.include.optimization import Optimization as OPT
+from reps.interface.dataEdit import DataEdit as DE
+from reps.interface.editPreferences import EditPreferences as PREF
+from reps.interface.userActions import UserActions as ACT
+from reps.output import feedback as FEED
+from reps.output import resultsPlot as PLOT
+from reps.output import resultsTable as TABLE
 
 from easysettings import EasySettings
 
@@ -19,8 +24,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-# qtCreatorFile = os.path.join('.', 'resource', 'mainWindow.ui')
-qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'mainWindow.ui'))
+
+qtCreatorFile = INFO.resource_path(os.path.join('.', 'reps', 'resource', 'mainWindow.ui'))
 Ui_MainWindow, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class daVinci( QMainWindow, Ui_MainWindow ):
@@ -28,9 +33,9 @@ class daVinci( QMainWindow, Ui_MainWindow ):
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.setupUi(self)
-        # Preferences
         self.showMaximized()
-        self.preferences_plotting = EasySettings(os.path.join(os.getcwd(), 'parameters', 'user','preferences_plotting-user.conf'))
+        # Preferences
+        self.preferences_plotting = EasySettings(os.path.join(os.getcwd(), 'reps', 'parameters', 'default', 'preferences_plotting-default.conf'))
         # System(s) Loading
         self.systems = {}
         self.systems['system1'] = MCDF('system1')
@@ -100,7 +105,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
             valid, culprits = system_current.return_validity()
             if not valid:
                 msg = 'System data is not valid.  Variable(s) {} cannot be 0'.format(culprits)
-                GEN.handle_invalid_system_data(self, msg)
+                FEED.handle_invalid_system_data(self, msg)
             else:
                 OPT(system_current)
                 TABLE.table_results(self, system_current)
@@ -108,7 +113,7 @@ class daVinci( QMainWindow, Ui_MainWindow ):
                 try:
                     PLOT.plot_results(self, system_current)
                 except Exception as e:
-                    print(e)
+                    raise
                 self.statusbar.showMessage('See table and plot for results.')
 
 

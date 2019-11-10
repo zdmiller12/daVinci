@@ -7,3 +7,6 @@
 # distrubution and build folders
 **/dist/
 **/build/
+
+# pycache from pyinstaller
+**/__pycache__/

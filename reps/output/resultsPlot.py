@@ -1,7 +1,10 @@
 import os
 import numpy as np
-from PyQt5 import QtCore
 
+from . import resultsTable as TABLE
+from reps.include import doubleDict as DD
+
+from PyQt5 import QtCore
 from easysettings import EasySettings
 
 import matplotlib
@@ -12,8 +15,6 @@ from matplotlib.figure import Figure
 from mpl_toolkits.axes_grid1 import host_subplot
 import mpl_toolkits.axisartist as AA
 
-from . import resultsTable as TABLE
-from . import markerMap as MAP
 
 def make_patch_spines_invisible( ax ):
     ax.set_frame_on(True)
@@ -23,7 +24,7 @@ def make_patch_spines_invisible( ax ):
 
 def plot_results(self, system_current):
     clear_layout(self)
-    MM = MAP.create_marker_map()
+    MM = DD.create_marker_map()
     PP = self.preferences_plotting
     # easy enough to make drag and drop
     self.x_variables = ['TC']

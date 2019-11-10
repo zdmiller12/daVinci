@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-import installer as INT
+from reps import systemInfo as INFO
 
 from easysettings import EasySettings
 from PyQt5 import uic
@@ -9,8 +9,8 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-# qtCreatorFile = os.path.join('.', 'resource', 'editPreferences.ui')
-qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'editPreferences.ui'))
+
+qtCreatorFile = INFO.resource_path(os.path.join('.', 'reps', 'resource', 'editPreferences.ui'))
 Ui_editPreferencesDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class EditPreferences( QDialog, Ui_editPreferencesDialog ):
@@ -97,7 +97,7 @@ class EditPreferences( QDialog, Ui_editPreferencesDialog ):
             self.restore_defaults()
 
     def restore_defaults(self):
-        defaults = EasySettings(os.path.join(os.getcwd(), 'parameters', 'default','preferences_plotting-default.conf'))
+        defaults = EasySettings(os.path.join(os.getcwd(), 'reps', 'parameters', 'default','preferences_plotting-default.conf'))
         for setting in defaults.list_settings():
             self.PP.set(setting[0], setting[1])
         self.populate()

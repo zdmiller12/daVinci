@@ -1,24 +1,23 @@
-import pdb
 import os
 import numpy as np
 import pandas as pd
 
-from . import basicFunctions as bF
+from . import basicFunctions as FUN
 
 
-class mainClassDataFrame:
+class MainClassDataFrame:
     def __init__(self, name):
         self.name = name
         self.variables_all  = []
         self.variables_per_equation = {}
 
-        self.default_system_filePath = os.path.join(os.getcwd(), 'parameters', 'user', 'systems', 'examples', 'default.pkl')
+        self.default_system_filePath = os.path.join(os.getcwd(), 'reps', 'parameters', 'user', 'systems', 'examples', 'default.pkl')
 
-        for method in dir(bF):
+        for method in dir(FUN):
             if method[:5] != 'calc_':
                 continue
             else:
-                fun   = getattr(bF, method)
+                fun   = getattr(FUN, method)
                 arg_N = fun.__code__.co_argcount
                 args  = fun.__code__.co_varnames
                 self.variables_all.append(args)

@@ -18,10 +18,10 @@ a = Analysis(['launch_reps.py'],
              cipher=block_cipher,
              noarchive=False)
 			 
-a.datas += [('.\\resource\\dataEdit_base.ui',   '.\\resource\\dataEdit_base.ui',   'DATA'),
-            ('.\\resource\\editPreferences.ui', '.\\resource\\editPreferences.ui', 'DATA'),
-			('.\\resource\\mainWindow.ui',      '.\\resource\\mainWindow.ui',      'DATA'),
-			('.\\resource\\userAction.ui',      '.\\resource\\userAction.ui',      'DATA')]
+a.datas += [('.\\reps\\resource\\dataEdit_base.ui',   '.\\reps\\resource\\dataEdit_base.ui',   'DATA'),
+            ('.\\reps\\resource\\editPreferences.ui', '.\\reps\\resource\\editPreferences.ui', 'DATA'),
+			('.\\reps\\resource\\mainWindow.ui',      '.\\reps\\resource\\mainWindow.ui',      'DATA'),
+			('.\\reps\\resource\\userAction.ui',      '.\\reps\\resource\\userAction.ui',      'DATA')]
             
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
