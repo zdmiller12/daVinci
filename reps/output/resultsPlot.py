@@ -15,7 +15,6 @@ import mpl_toolkits.axisartist as AA
 from . import resultsTable as TABLE
 from . import markerMap as MAP
 
-
 def make_patch_spines_invisible( ax ):
     ax.set_frame_on(True)
     ax.patch.set_visible(False)
@@ -27,7 +26,7 @@ def plot_results(self, system_current):
     MM = MAP.create_marker_map()
     PP = self.preferences_plotting
     # easy enough to make drag and drop
-    self.x_variables = ['AELCC']
+    self.x_variables = ['TC']
     self.y_variables = ['MTBF_average', 'P0', 'PFC']
     yLabels = [PP.get('yLabelInner'), PP.get('yLabelMiddle'), PP.get('yLabelOuter')]
 

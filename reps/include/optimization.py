@@ -80,6 +80,7 @@ class Optimization:
                         self.assign_variable(var, new_var)
 
     def assign_variable(self, var, new_var):
+        print('new variable {}={}'.format(var, new_var))
         self.system.variable_set.at[var, self.column_header] = new_var
         self.counter = 0
 

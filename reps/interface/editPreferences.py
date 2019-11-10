@@ -1,15 +1,16 @@
 import os
 import pandas as pd
 
-import pdb
-from easysettings import EasySettings
+import installer as INT
 
+from easysettings import EasySettings
 from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resource', 'editPreferences.ui')
+# qtCreatorFile = os.path.join('.', 'resource', 'editPreferences.ui')
+qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'editPreferences.ui'))
 Ui_editPreferencesDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class EditPreferences( QDialog, Ui_editPreferencesDialog ):

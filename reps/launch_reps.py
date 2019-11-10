@@ -1,18 +1,7 @@
-#!/usr/bin/env python
-
-
-#############################################################################
-##
-## Decision Evaluation Display
-##
-## Zachary Miller
-## October 2018
-## zdmiller12@gmail.com
-##
-#############################################################################
-
 import pdb
 import os, sys
+
+import installer as INT
 
 from include.mainClassDataFrame import mainClassDataFrame as MCDF
 from include.optimization import Optimization as OPT
@@ -30,15 +19,15 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'resource', 'mainWindow.ui')
+# qtCreatorFile = os.path.join('.', 'resource', 'mainWindow.ui')
+qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'mainWindow.ui'))
 Ui_MainWindow, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class daVinci( QMainWindow, Ui_MainWindow ):
-
-    def __init__( self, parent=None ):
-        QMainWindow.__init__( self )
-        Ui_MainWindow.__init__( self )
-        self.setupUi( self )
+    def __init__(self, parent=None):
+        QMainWindow.__init__(self)
+        Ui_MainWindow.__init__(self)
+        self.setupUi(self)
         # Preferences
         self.showMaximized()
         self.preferences_plotting = EasySettings(os.path.join(os.getcwd(), 'parameters', 'user','preferences_plotting-user.conf'))
@@ -116,7 +105,10 @@ class daVinci( QMainWindow, Ui_MainWindow ):
                 OPT(system_current)
                 TABLE.table_results(self, system_current)
                 TABLE.check_all_iters(self)
-                PLOT.plot_results(self, system_current)
+                try:
+                    PLOT.plot_results(self, system_current)
+                except Exception as e:
+                    print(e)
                 self.statusbar.showMessage('See table and plot for results.')
 
 
@@ -155,10 +147,9 @@ class daVinci( QMainWindow, Ui_MainWindow ):
     #
     ##
     ###
-
+    
         
 if __name__ == '__main__':
-    global daVinci_main
     # # for windows screen
     # from win32api import GetSystemMetrics
     # print("Width =", GetSystemMetrics(0))
@@ -176,4 +167,5 @@ if __name__ == '__main__':
 
     # 
     daVinci_main.show()
-    sys.exit( app.exec_() )
+    app.exec()
+    #sys.exit( app.exec_() )

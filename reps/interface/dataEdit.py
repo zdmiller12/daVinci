@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-import pdb
+import installer as INT
 
 from PyQt5 import uic
 from PyQt5.QtGui import *
@@ -10,9 +10,9 @@ from PyQt5.QtWidgets import *
 
 from include import basicFunctions as bF
 
-qtCreatorFile = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'resource', 'dataEdit_base.ui')
+# qtCreatorFile = os.path.join('.', 'resource', 'dataEdit_base.ui')
+qtCreatorFile = INT.resource_path(os.path.join('.', 'resource', 'dataEdit_base.ui'))
 Ui_dataEditDialog, QtBaseClass = uic.loadUiType( qtCreatorFile )
-
 
 class DataEdit( QDialog, Ui_dataEditDialog ):
     def __init__(self, systems, parent=None):

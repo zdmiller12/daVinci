@@ -16,6 +16,7 @@ def calc_AELCC(PC, OC, RC, SC):
 def calc_PFC(P, N):
     if type(N) == list:
         N = int(N[0])
+    N = np.int64(N)
     PFC = P * N
     return PFC
 
@@ -26,6 +27,7 @@ def calc_PFC(P, N):
 def calc_PC(Ci, N):
     if type(N) == list:
         N = int(N[0])
+    N = np.int64(N)
     PC = Ci * N
     return PC
     # or return equivalent form given by eq 8.18
@@ -37,6 +39,7 @@ def calc_PC(Ci, N):
 def calc_Ci(P, B, i, n):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     P_eq = P - B
     Ci = find_A_given_P(P_eq, i, n) + (B * i)
     return Ci
@@ -51,6 +54,7 @@ def calc_Ci(P, B, i, n):
 def calc_B(P, n, F, L):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     numerator = P - F
     B = P - n * np.true_divide(numerator, L)
     return B
@@ -63,6 +67,7 @@ def calc_B(P, n, F, L):
 def calc_OC(EC, LC, PMC, N, OAOC):
     if type(N) == list:
         N = int(N[0])
+    N = np.int64(N)
     OC = (EC + LC + PMC + OAOC) * N
     return OC
 
@@ -73,6 +78,7 @@ def calc_OC(EC, LC, PMC, N, OAOC):
 def calc_RC(Cr, M):
     if type(M) == list:
         M = int(M[0])
+    M = np.int64(M)
     RC = Cr * M
     return RC
 
@@ -90,6 +96,7 @@ def calc_SC(Cs, E_S_):
 def calc_MTBF_average(n, MTBF_values):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     MTBF_average = np.average(MTBF_values[:n])
     return MTBF_average
 
@@ -99,6 +106,7 @@ def calc_MTBF_average(n, MTBF_values):
 def calc_MTTR_average(n, MTTR_values):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     MTTR_average = np.average(MTTR_values[:n])
     return MTTR_average
 
@@ -128,6 +136,9 @@ def calc_Cn_array(N, n, LAMBDA, MU, M):
         N = int(N[0])
     if type(n) == list:
         n = int(n[0])
+    M = np.int64(M)
+    N = np.int64(N)
+    n = np.int64(n)
     numerator   = np.math.factorial(N)
     parentheses = np.true_divide(LAMBDA, MU)
     Cn_array    = np.array([])
@@ -146,6 +157,7 @@ def calc_Cn_array(N, n, LAMBDA, MU, M):
 def calc_P0(N, Cn_array):
     if type(N) == list:
         N = int(N[0])
+    N = np.int64(N)
     summation = np.sum(Cn_array)
     P0 = np.true_divide(1, summation)
     return P0
@@ -167,6 +179,8 @@ def calc_Pr_array(N, D, Pn_array):
         D = int(D[0])
     if type(N) == list:
         N = int(N[0])
+    D = np.int64(D)
+    N = np.int64(N)
     index = N - D
     Pr_array = Pn_array[index:]
     return Pr_array
@@ -177,6 +191,8 @@ def calc_P_naught(N, D, Pn_array):
         D = int(D[0])
     if type(N) == list:
         N = int(N[0])
+    D = np.int64(D)
+    N = np.int64(N)
     index = N - D + 1 
     P_naught = sum(Pn_array[:index])
     return P_naught
@@ -190,6 +206,8 @@ def calc_E_S_(D, N, Pn_array):
         D = int(D[0])
     if type(N) == list:
         N = int(N[0])
+    D = np.int64(D)
+    N = np.int64(N)
     summation = 0
     # D changed to array during transition to tables for user edit
     for j in range(1, D+1):
@@ -217,13 +235,16 @@ def calc_TC(PC, OC, RC, SC):
 def find_F_given_P(P, i, n):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     base = 1 + i
     F = P * np.power(base, n)
     return F
 
 # single-payment, present-amount
 def find_P_given_F(F, i, n):
-    # n = int(n[0])
+    if type(n) == list:
+        n = int(n[0])
+    n = np.int64(n)
     base = 1 + i
     denominator = np.power(base, n)
     P = np.true_divide(F, denominator)
@@ -233,6 +254,7 @@ def find_P_given_F(F, i, n):
 def find_F_given_A(A, i, n):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     base = 1 + i
     numerator = np.power(base, n) - 1
     F = np.true_divide( (A*numerator), i)
@@ -242,6 +264,7 @@ def find_F_given_A(A, i, n):
 def find_A_given_F(F, i, n):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     base = 1 + i
     denominator = np.power(base, n) - 1
     A = np.true_divide( (F*i), denominator)
@@ -251,6 +274,7 @@ def find_A_given_F(F, i, n):
 def find_P_given_A(A, i, n):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     base = 1 + i
     numerator = np.power(base, n) - 1
     denominator = i * np.power(base, n)
@@ -261,6 +285,7 @@ def find_P_given_A(A, i, n):
 def find_A_given_P(P, i, n):
     if type(n) == list:
         n = int(n[0])
+    n = np.int64(n)
     base = 1 + i
     numerator = i * np.power(base, n)
     denominator = np.power(base, n) - 1
