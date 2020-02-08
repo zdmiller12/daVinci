@@ -1,0 +1,203 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Legrand Orange Book
+% LaTeX Template
+% Version 2.3 (8/8/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Mathias Legrand (legrand.mathias@gmail.com) with modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Compiling this template:
+% This template uses biber for its bibliography and makeindex for its index.
+% When you first open the template, compile it from the command line with the 
+% commands below to make sure your LaTeX distribution is configured correctly:
+%
+% 1) pdflatex main
+% 2) makeindex main.idx -s StyleInd.ist
+% 3) biber main
+% 4) pdflatex main x 2
+%
+% After this, when you wish to update the bibliography/index use the appropriate
+% command above and make sure to compile with pdflatex several times 
+% afterwards to propagate your changes to the document.
+%
+% This template also uses a number of packages which may need to be
+% updated to the newest versions for the template to compile. It is strongly
+% recommended you update your LaTeX distribution if you have any
+% compilation errors.
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%%----------------------------------------------------------------------------------------
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+%----------------------------------------------------------------------------------------
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+\begin{document}
+%%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%%----------------------------------------------------------------------------------------
+\begingroup
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{space2}}; % original picture size was 8.08"x11.56"
+\draw (current page.south) node [fill=white!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm, anchor=south]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering \textsc{Systems Thinking, Engineering, and Analysis}\\[21pt] % Book title
+{\huge Doctor Wolter J Fabrycky}}}; % Author name
+\end{tikzpicture}
+\vfill
+\endgroup
+%%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%%----------------------------------------------------------------------------------------
+\newpage
+~\vfill
+\thispagestyle{empty}
+\noindent Copyright \copyright\ 2018 Wolter J Fabrycky\\ % Copyright notice
+\noindent \textsc{Published by ACE, a Zachary D Miller company}\\ % Publisher
+\noindent \textsc{\url{www.a2i2.com}}\\ % URL
+\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
+\noindent \textit{First electronic publication, 2018} % Printing/edition date
+%%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+%%----------------------------------------------------------------------------------------
+%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
+\chapterimage{chain.jpg} % Table of contents heading image
+\pagestyle{empty} % No headers
+\tableofcontents % Print the table of contents itself
+% undesirable as an e-book
+%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
+\pagestyle{fancy} % Print headers again
+
+% EXAMPLE TO WRITE EQUATIONS
+\newpage
+\input{equations.tex}
+\newpage
+
+% PROBLEMS / SOLUTIONS EXAMPLES
+\newpage
+\input{SolutionManual/updated_SEA_problems.tex}
+\newpage
+
+%%%---------------------------------------------------------------------------------------
+%%
+%	PART I
+%%
+%%%---------------------------------------------------------------------------------------
+%\input{Parts/Part1/Part1-preamble.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 1
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part1/Chap01.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 2
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part1/Chap02.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 3
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part1/Chap03.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 4
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part1/Chap04.tex}
+%%%---------------------------------------------------------------------------------------
+%%
+%	PART II
+%%
+%%%---------------------------------------------------------------------------------------
+%\input{Parts/Part2/Part2-preamble.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 5
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part2/Chap05.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 6
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part2/Chap06.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 7
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part2/Chap07.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 8
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part2/Chap08.tex}
+%%%---------------------------------------------------------------------------------------
+%%
+%	PART III
+%%
+%%%---------------------------------------------------------------------------------------
+%\input{Parts/Part3/Part3-preamble.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 9
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part3/Chap09.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 10
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part3/Chap10.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 11
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part3/Chap11.tex}
+%%%---------------------------------------------------------------------------------------
+%%
+%	Part IV
+%%
+%%%---------------------------------------------------------------------------------------
+%\input{Parts/Part4/Part4-preamble.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 12
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part4/Chap12.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 13
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part4/Chap13.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 14
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part4/Chap14.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 15
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part4/Chap15.tex}
+%%----------------------------------------------------------------------------------------
+%	  CHAPTER 16
+%%----------------------------------------------------------------------------------------
+%\input{Parts/Part4/Chap16.tex}
+%%%---------------------------------------------------------------------------------------
+%%
+%	APPENDICES
+%%
+%%%---------------------------------------------------------------------------------------
+\part{Appendices}
+\begin{appendices}
+%%----------------------------------------------------------------------------------------
+%	  APPENDIX A
+%%----------------------------------------------------------------------------------------
+\input{Appendices/AppenA.tex}
+%%----------------------------------------------------------------------------------------
+%	  APPENDIX B
+%%----------------------------------------------------------------------------------------
+\input{Appendices/AppenB.tex}
+%-----------------------------------------------------------------------------------------
+\end{appendices}
+%%----------------------------------------------------------------------------------------
+%%%---------------------------------------------------------------------------------------
+%%
+%	INDEX
+%%
+%%%---------------------------------------------------------------------------------------
+\end{document}

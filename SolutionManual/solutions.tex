@@ -1,0 +1,27 @@
+%%%%%
+%%%%
+%%%
+%%
+%     SOLUTION MANUAL
+
+% for solution manual to be up-to-date, there are manual steps (probably Overleaf weirdness)
+% 1. download the output*.sol.tex file from a main.tex compilation (& verify it's populated)
+% 2. upload the file in STEA/Solution Manual/ as stea.sol.tex
+% 3. in Menu, change Main Document to STEA/Solution Manual/solutions.tex
+% 4. compile, download
+% 5. In Menua, change Main Document back to main.tex
+%
+% * compiling solutions.tex produces a blank output*.sol.tex file, which it imports, but is blank
+
+%
+%%
+%%%
+%%%%
+%%%%%
+
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+%----------------------------------------------------------------------------------------
+\begin{document}
+\usepackage[copyexercisesinsolutions]{exsol}
+\input{stea.sol.tex}
+\end{document}
