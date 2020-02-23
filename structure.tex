@@ -65,6 +65,8 @@
 \usepackage[utf8]{inputenc} % Required for including letters with accents
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 \usepackage{dirtytalk} % I ADDED
+\newcommand{\RomanNumeralCaps}[1]
+    {\MakeUppercase{\romannumeral #1}} % I ADDED 
 %%----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY AND INDEX
 %%----------------------------------------------------------------------------------------
@@ -230,10 +232,14 @@
 %% For organizing PQE's and their solutions (I added) 
 % allows separate publication, even with problem and solution together in text
 % http://ctan.math.washington.edu/tex-archive/macros/latex/contrib/exsol/exsol.pdf
-\usepackage{exsol}
-\renewcommand*\exercisesname{Problems, Questions, and Exercises for Chapter \thechapter}
-\renewcommand*\exercisename{Problem}
-\renewcommand*\theexercise{\thechapter.\arabic{exercise}}
+%\def\solutionname{Solution \thechapter.\arabic{exercise}} % failed
+\usepackage[copyexercisesinsolutions]{exsol}
+\renewcommand{\exercisesname}{Problems, Questions, and Exercises for Chapter \thechapter}
+\renewcommand{\exercisename}{Problem}
+\renewcommand{\theexercise}{\thechapter.\arabic{exercise}}
+%\renewcommand{\solutionname}{Solution \thechapter.\arabic{exercise}} % failed
+%\renewcommand*\solutionname{Solution \thechapter.\arabic{exercise}} % failed
+%\def\solutionname{Solution \thechapter.\arabic{exercise}} % failed
 % above is my formatting of exsol
 \newtheorem{exerciseT}{Exercise}[chapter]
 \theoremstyle{blacknumex}
@@ -473,6 +479,8 @@ innerbottommargin=5pt]{cBox}
 \usepackage[final,hidelinks,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor=carolinablue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage{autonum}
+% below to reference labels from main document from Solution Manual
+\usepackage{xr} 
 \usepackage{bookmark}
 \bookmarksetup{
 open,
