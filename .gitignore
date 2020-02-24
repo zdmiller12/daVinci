@@ -1,0 +1,13 @@
+# ignore LaTeX compiled
+*.aux
+*.bcf
+*.exc.tex
+*.fc.tex
+*.idx
+*.pdf
+*.ptc
+*.run.xml
+*.synctex.gz
+*.toc
+*.log
+*.sol.tex
