@@ -7,10 +7,10 @@
 \newcommand\whichBook{STEA} % {STEA} or {SEA}
 %% example usage
 % must have below line somewhere (one for every chapter)
-\DTLloaddb{Solutions08}{Problems/Solutions/Solutions08.csv}
+%\DTLloaddb{Solutions08}{Problems/Solutions/Solutions08.xlsx}
 % thn use below in actual problem/solution
-\DTLfetch{solutions}{color}{red}{\whichBook}
-%% each example line must be in a preamble
+%\DTLfetch{solutions}{color}{red}{\whichBook}
+%% first 2 lines in preamble, then fetch in /document
 \begin{document}
 %%----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -50,9 +50,9 @@
 %%----------------------------------------------------------------------------------------
 \input{Parts/Part1-preamble}
 \input{Parts/Part2-preamble}
-\input{Parts/Part3-preamble}
-\input{Parts/Part4-preamble}
-\input{Parts/Part5-preamble}
+%\input{Parts/Part3-preamble}
+%\input{Parts/Part4-preamble}
+%\input{Parts/Part5-preamble}
 %%----------------------------------------------------------------------------------------
 %	APPENDICES
 %%----------------------------------------------------------------------------------------

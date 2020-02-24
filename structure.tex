@@ -71,10 +71,9 @@
 %%----------------------------------------------------------------------------------------
 %	BIBLIOGRAPHY AND INDEX
 %%----------------------------------------------------------------------------------------
-% i added for appendix labeling
-\usepackage[title]{appendix}
-% removed backref=true
-\usepackage[style=numeric,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,autolang=hyphen,hyperref=true,abbreviate=false,backend=biber]{biblatex}
+\usepackage{csquotes} % I ADDED, recommended 
+\usepackage[title]{apgood prpendix} % I ADDED, for appendix labelling
+\usepackage[style=numeric,citestyle=numeric,sorting=nyt,sortcites=true,autopunct=true,autolang=hyphen,hyperref=true,abbreviate=false,backend=biber]{biblatex} % I removed backref=true
 \addbibresource{bibliography.bib} % BibTeX bibliography file
 \defbibheading{bibempty}{}
 \usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
@@ -479,9 +478,8 @@ innerbottommargin=5pt]{cBox}
 % removed backref=true,pagebackref=true
 \usepackage[final,hidelinks,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor=carolinablue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
-\usepackage{autonum}
-% below to reference labels from main document from Solution Manual
-\usepackage{xr} 
+%\usepackage{autonum} % I COMMENTED, incompatible package with biblatex
+\usepackage{xr} % I ADDED, to reference labels from main document from Solution Manual
 \usepackage{bookmark}
 \bookmarksetup{
 open,
