@@ -1,42 +1,11 @@
-%%%%%
-%%%%
-%%%
-%%
-%     SOLUTION MANUAL
-
-% for solution manual to be up-to-date, there are manual steps (probably Overleaf weirdness)
-% 1. download the output*.sol.tex file from a mainText.tex compilation (& verify it's populated)
-% 2. upload the file in STEA/Solution Manual/ as stea.sol.tex 
-%      *MUST change from output.sol.tex, or the new output is used
-% 3. in Menu, change Main Document to STEA/SolutionManual/mainSolutionManual.tex
-% 4. compile, download
-% 5. In Menu, change Main Document back to mainText.tex
-%
-% * compiling solutions.tex produces a blank output*.sol.tex file, which it imports, but is blank
-%
-%%
-%%%
-%%%%
-%%%%%
-
-%%% Manually Installing Packages
-% 1. download from CTAN (or wherever)
-% 2. unzip (if necessary)
-% 3. using MikTeX Console application, open a console
-% 4. run "latex packageName.ins"
-% 5. copy directory and contents to C:\Users\zdmil\AppData\Local\Programs\MiKTeX 2.9\tex/latex/packageName
-% 6. run Tasks > Refresh file name database
-%%%
-
-%%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%%----------------------------------------------------------------------------------------
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
-%----------------------------------------------------------------------------------------
-% PREAMBLE
-\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+%%----------------------------------------------------------------------------------------
+%	PREAMBLE
+%%----------------------------------------------------------------------------------------
+\input{structure} % importing packages and defining settings, environments, and commands
 %%%%%
 %%  below block to reference main document labels from Solution Manual
+% may be duplicating labels?  (getting warnings, not sure if affecting behavior)
 \makeatletter
 \newcommand*{\addFileDependency}[1]{% argument=file name and extension
   \typeout{(#1)}

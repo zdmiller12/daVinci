@@ -1,61 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% The Legrand Orange Book
-% LaTeX Template
-% Version 2.3 (8/8/17)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Original author:
-% Mathias Legrand (legrand.mathias@gmail.com) with modifications by:
-% Vel (vel@latextemplates.com)
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-%
-% Compiling this template:
-% This template uses biber for its bibliography and makeindex for its index.
-% When you first open the template, compile it from the command line with the 
-% commands below to make sure your LaTeX distribution is configured correctly:
-%
-% 1) pdflatex main
-% 2) makeindex main.idx -s StyleInd.ist
-% 3) biber main
-% 4) pdflatex main x 2
-%
-% After this, when you wish to update the bibliography/index use the appropriate
-% command above and make sure to compile with pdflatex several times 
-% afterwards to propagate your changes to the document.
-%
-% This template also uses a number of packages which may need to be
-% updated to the newest versions for the template to compile. It is strongly
-% recommended you update your LaTeX distribution if you have any
-% compilation errors.
-%
-% Important note:
-% Chapter heading images should have a 2:1 width:height ratio,
-% e.g. 920px width and 460px height.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% Manually Installing Packages
-% 1. download from CTAN (or wherever)
-% 2. unzip (if necessary)
-% 3. using MikTeX Console application, open a console
-% 4. run "latex packageName.ins"
-% 5. copy directory and contents to C:\Users\zdmil\AppData\Local\Programs\MiKTeX 2.9\tex/latex/packageName
-% 6. run Tasks > Refresh file name database
-%%%
-% Overleaf uses pdfLaTeX compiler
-
-%%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%%----------------------------------------------------------------------------------------
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
-%----------------------------------------------------------------------------------------
-% PREAMBLE
-\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
-
+%%----------------------------------------------------------------------------------------
+%	PREAMBLE
+%%----------------------------------------------------------------------------------------
+\input{structure} % importing packages and defining settings, environments, and commands
+% Use line below to switch between SEA & STEA solutions
+\newcommand\whichBook{STEA} % {STEA} or {SEA}
+%% example usage
+% must have below line somewhere (one for every chapter)
+\DTLloaddb{Solutions08}{Problems/Solutions/Solutions08.csv}
+% thn use below in actual problem/solution
+\DTLfetch{solutions}{color}{red}{\whichBook}
+%% each example line must be in a preamble
 \begin{document}
 %%----------------------------------------------------------------------------------------
 %	TITLE PAGE
@@ -90,50 +45,23 @@
 % undesirable as an e-book
 %\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
 \pagestyle{fancy} % Print headers again
-%%%---------------------------------------------------------------------------------------
-%%
+%%----------------------------------------------------------------------------------------
 %	MAIN CONTENT
-%%
-%%%---------------------------------------------------------------------------------------
-\input{Parts/Part1/Part1-preamble}
-\input{Parts/Part1/Chap01}
-\input{Parts/Part1/Chap02}
-\input{Parts/Part1/Chap03}
-\input{Parts/Part1/Chap04}
-\input{Parts/Part2/Part2-preamble}
-\input{Parts/Part2/Chap05}
-\input{Parts/Part2/Chap06}
-\input{Parts/Part2/Chap07}
-\input{Parts/Part2/Chap08}
-\input{Parts/Part3/Part3-preamble}
-\input{Parts/Part3/Chap09}
-\input{Parts/Part3/Chap10}
-\input{Parts/Part3/Chap11}
-\input{Parts/Part4/Part4-preamble}
-\input{Parts/Part4/Chap12}
-\input{Parts/Part4/Chap13}
-\input{Parts/Part4/Chap14}
-\input{Parts/Part4/Chap15}
-\input{Parts/Part5/Part5-preamble}
-\input{Parts/Part5/Chap16}
-\input{Parts/Part5/Chap17}
-\input{Parts/Part5/Chap18}
-\input{Parts/Part5/Chap19}
-\input{Parts/Part5/Chap20}
-\input{Parts/Part5/Chap21}
-%%%---------------------------------------------------------------------------------------
-%%
+%%----------------------------------------------------------------------------------------
+\input{Parts/Part1-preamble}
+\input{Parts/Part2-preamble}
+\input{Parts/Part3-preamble}
+\input{Parts/Part4-preamble}
+\input{Parts/Part5-preamble}
+%%----------------------------------------------------------------------------------------
 %	APPENDICES
-%%
-%%%---------------------------------------------------------------------------------------
+%%----------------------------------------------------------------------------------------
 \part{Appendices}
 \begin{appendices}
 \input{Appendices/AppenA}
 \input{Appendices/AppenB}
 \end{appendices}
-%%%---------------------------------------------------------------------------------------
-%%
+%%----------------------------------------------------------------------------------------
 %	INDEX
-%%
-%%%---------------------------------------------------------------------------------------
+%%----------------------------------------------------------------------------------------
 \end{document}
