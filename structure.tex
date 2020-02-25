@@ -26,7 +26,6 @@
 \usepackage[english]{babel} % English language/hyphenation
 \usepackage{enumitem} % Customize lists
 \usepackage{dcolumn} % I ADDED
-\usepackage{datatool} % I ADDED (for reading csv's)
 \setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
 \usepackage{booktabs} % Required for nicer horizontal rules in tables
 \usepackage{xcolor} % Required for specifying colors by name
@@ -53,6 +52,32 @@
 % https://teamcolorcodes.com/virginia-tech-hokies-color-codes/
 \definecolor{VTchicagoMaroonTEAM}{RGB}{106,44,62}
 \definecolor{VTburntOrangeTEAM}{RGB}{207,69,32}
+%%----------------------------------------------------------------------------------------
+%	LOADING DATA FOR PROBLEMS & SOLUTIONS
+%%----------------------------------------------------------------------------------------
+\usepackage{datatool} % I ADDED (for reading csv's)
+\newcommand{\V}[1]{\DTLfetch{Solutions01}{ch_pr_var}{#1}{\whichBook}} % renew every Problems## file for new chapter
+\IfFileExists{Problems/Solutions/Solutions01.csv}{\DTLloaddb{Solutions01}{Problems/Solutions/Solutions01.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions02.csv}{\DTLloaddb{Solutions02}{Problems/Solutions/Solutions02.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions03.csv}{\DTLloaddb{Solutions03}{Problems/Solutions/Solutions03.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions04.csv}{\DTLloaddb{Solutions04}{Problems/Solutions/Solutions04.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions05.csv}{\DTLloaddb{Solutions05}{Problems/Solutions/Solutions05.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions06.csv}{\DTLloaddb{Solutions06}{Problems/Solutions/Solutions06.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions07.csv}{\DTLloaddb{Solutions07}{Problems/Solutions/Solutions07.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions08.csv}{\DTLloaddb{Solutions08}{Problems/Solutions/Solutions08.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions09.csv}{\DTLloaddb{Solutions09}{Problems/Solutions/Solutions09.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions10.csv}{\DTLloaddb{Solutions10}{Problems/Solutions/Solutions10.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions11.csv}{\DTLloaddb{Solutions11}{Problems/Solutions/Solutions11.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions12.csv}{\DTLloaddb{Solutions12}{Problems/Solutions/Solutions12.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions13.csv}{\DTLloaddb{Solutions13}{Problems/Solutions/Solutions13.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions14.csv}{\DTLloaddb{Solutions14}{Problems/Solutions/Solutions14.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions15.csv}{\DTLloaddb{Solutions15}{Problems/Solutions/Solutions15.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions16.csv}{\DTLloaddb{Solutions16}{Problems/Solutions/Solutions16.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions17.csv}{\DTLloaddb{Solutions17}{Problems/Solutions/Solutions17.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions18.csv}{\DTLloaddb{Solutions18}{Problems/Solutions/Solutions18.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions19.csv}{\DTLloaddb{Solutions19}{Problems/Solutions/Solutions19.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions20.csv}{\DTLloaddb{Solutions20}{Problems/Solutions/Solutions20.csv}}{\relax}
+\IfFileExists{Problems/Solutions/Solutions21.csv}{\DTLloaddb{Solutions21}{Problems/Solutions/Solutions21.csv}}{\relax}
 %%----------------------------------------------------------------------------------------
 %	FONTS
 %%----------------------------------------------------------------------------------------

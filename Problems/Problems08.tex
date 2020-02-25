@@ -1,14 +1,18 @@
 %% SEA CHAPTER 8 - MODELS FOR ECONOMIC EVALUATION
 % SEA Question Location in \label{sea-Chapter#-Problem#}
 % ANSWERS NEED UPDATING
+
+% only need to change the third argument in \DTLfetch{Solutions08}{ch_pr_var}{08_01_FV}{\whichBook}
+\renewcommand{\V}[1]{\DTLfetch{Solutions08}{ch_pr_var}{#1}{\whichBook}}
+
 \begin{exercises}
     \begin{exercise}
     \label{sea-8-1}
-        How much money must be invested to accumulate \$10,000 in 8 years at 6\% compounded annually?
+        How much money must be invested to accumulate \$\V{08_01_FV} in \V{08_01_periods} years at \V{08_01_i}\% compounded annually?
     \end{exercise}
     \begin{solution}
         \begin{equation}
-            P=P/F,6,8=\$10,000(0.6274)=\$6,274
+            P=P/F,\V{08_01_i},\v{08_01_periods}=\$\V{08_01_FV}(0.6274)=\$\V{08_01_PV}
         \end{equation}
     \end{solution}
     
