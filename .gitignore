@@ -1,5 +1,5 @@
 # ignore temp file (like from Excel)
-*~
+*~*
 
 # ignore LaTeX compiled
 *.aux
