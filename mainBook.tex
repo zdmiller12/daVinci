@@ -1,126 +1,162 @@
 \documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
 %%----------------------------------------------------------------------------------------
 %	PREAMBLE
-%%----------------------------------------------------------------------------------------
-\input{structure} % importing packages and defining settings, environments, and commands
-
+\input{Resources/shared/structure} % importing packages and defining settings, environments, and commands
 \newcommand\whichBook{SEA} % {STEA} or {SEA} - used to switch between solutions
-
 \begin{document}
+	
 %%----------------------------------------------------------------------------------------
 %	TITLE PAGE
-%%----------------------------------------------------------------------------------------
-\begingroup
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture,overlay]
-\node[inner sep=0pt] (background) at (current page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{space2}}; % original picture size was 8.08"x11.56"
-\draw (current page.south) node [fill=white!30!white,fill opacity=0.6,text opacity=1,inner sep=1cm, anchor=south]{\Huge\centering\bfseries\sffamily\parbox[c][][t]{\paperwidth}{\centering \textsc{Systems Thinking, Engineering, and Analysis}\\[21pt] % Book title
-{\huge Doctor Wolter J Fabrycky}}}; % Author name
-\end{tikzpicture}
-\vfill
-\endgroup
+\newcommand{\subtitle}{Doctor Wolter J Fabrycky}
+\input{Resources/shared/titlePage}
+
 %%----------------------------------------------------------------------------------------
 %	COPYRIGHT PAGE
-%%----------------------------------------------------------------------------------------
-\newpage
-~\vfill
-\thispagestyle{empty}
-\noindent Copyright \copyright\ 2018 Wolter J Fabrycky\\ % Copyright notice
-\noindent \textsc{Published by ACE, a Zachary D Miller company}\\ % Publisher
-\noindent \textsc{\url{www.a2i2.com}}\\ % URL
-\noindent Licensed under the Creative Commons Attribution-NonCommercial 3.0 Unported License (the ``License''). You may not use this file except in compliance with the License. You may obtain a copy of the License at \url{http://creativecommons.org/licenses/by-nc/3.0}. Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \textsc{``as is'' basis, without warranties or conditions of any kind}, either express or implied. See the License for the specific language governing permissions and limitations under the License.\\ % License information
-\noindent \textit{First electronic publication, 2018} % Printing/edition date
+\input{Resources/shared/copyright}
+
 %%----------------------------------------------------------------------------------------
 %	TABLE OF CONTENTS
-%%----------------------------------------------------------------------------------------
-%\usechapterimagefalse % If you don't want to include a chapter image, use this to toggle images off - it can be enabled later with \usechapterimagetrue
-\chapterimage{chain.jpg} % Table of contents heading image
-\pagestyle{empty} % No headers
-\tableofcontents % Print the table of contents itself
-% undesirable as an e-book
-%\cleardoublepage % Forces the first chapter to start on an odd page so it's on the right
-\pagestyle{fancy} % Print headers again
+\input{Resources/shared/toc}
+
 %%----------------------------------------------------------------------------------------
 %	MAIN CONTENT
-%%----------------------------------------------------------------------------------------
 \part{Systems and Systems Thinking}
 
   \chapterimage{purpleLeaf.jpg}
   \chapter{The World in Which We Live}
-  \label{ch:the-world-in}\input{Parts/ch_TheWorldInWhichWeLive}
     \section{Sectors Comprising Our World}
+      \label{sec:sectors-comprising-our}\index{Sectors Comprising Our World}\input{Parts/sec_SectorsComprisingOurWorld}
     \section{General Understanding of Systems}
     \section{Technology and Engineered Systems}
     \section{Transitioning Into the Systems Age}
     \section{The Evolution of Systems Thinking}
     \section{STEA as STEM for Grownups}
-    \section*{Summary and Extensions}
-       \index{Summary and Extensions}\input{Parts/ch_TheWorldInWhichWeLive_summary}
-    \section*{Problems, Questions, and Exercises}\input{Problems/Problems01}
+    \section{Summary and Extensions: insert nameref}	% \nameref{ch:the-world-in}
+      \index{Summary and Extensions}\input{Parts/ch_TheWorldInWhichWeLive_summary}
+    \section{Problems and Exercises: insert nameref}\input{Problems/Problems01}
     
   \chapterimage{wireFrame.jpg}
   \chapter{Scientific Thinking and Knowledge}
-  \label{ch:scientific-thinking-and}\input{Parts/ch_ScientificThinkingAndKnowledge}
     \section{Human Curiosity and Inquiry}
     \section{Human Activity and Praxeology}
     \section{Scientific Thinking in Antiquity}
     \section{Contemporary Scientific Thinking}
     \section{Science and Systems Science}
 	\section{Valuing Faith-Based Thinking}
-	\section*{Summary and Extensions}
+	\section{Summary and Extensions: insert nameref}
 	   \index{Summary and Extensions}\input{Parts/ch_ScientificThinkingAndKnowledge_summary}
-	\section*{Problems, Questions, and Exercises}\input{Problems/Problems02}
+	\section{Problems and Exercises: insert nameref}\input{Problems/Problems02}
   
   \chapterimage{leaf-bottom.jpg}
   \chapter{Organizing Human Activity Systems}
-  \label{ch:organizing-human-activity}\input{Parts/ch_OrganizingHumanActivitySystems}
     \section{Humans and Human Nature}
     \section{Humankind's Most Important Innovation}
     \section{An Organization Concept by Barnard}
     \section{Enterprises and Enterprise Systems}
     \section{Government and Governance}
     \section{Systems Engineering and Management}
-    \section*{Summary and Extensions}
+    \section{Summary and Extensions: insert nameref}
        \index{Summary and Extensions}\input{Parts/ch_OrganizingHumanActivitySystems_summary}
-    \section*{Problems, Questions, and Exercises}\input{Problems/Problems03}
+    \section{Problems and Exercises: insert nameref}\input{Problems/Problems03}
   
   \chapterimage{leafOnTable.jpg}
   \chapter{Enterprise Systems and Economics}
-  \label{ch:enterprise-systems-and}\input{Parts/ch_EnterpriseSystemsandEconomics}
     \section{The Nature of Human Wants}
     \section{Concepts of Value and Utility}
     \section{Physical and Economic Factors}
     \section{Consumer and Producer Goods}
     \section{History of Economic Thinking}
     \section{Austrian Economic Thinking}
-    \section*{Summary and Extensions}
+    \section{Summary and Extensions: insert nameref}
        \index{Summary and Extensions}\input{Parts/ch_EconomicsAndEnterpriseSystems_summary}
-    \section*{Problems, Questions, and Exercises}\input{Problems/Problems04}
+    \section{Problems and Exercises: insert nameref}\input{Problems/Problems04}
 
 \part{Systems Thinking for Engineering}
-\label{part:systems-thinking-for}\input{Parts/part_SystemsThinkingforEngineering}
 
-    %\chapterimage{}
-    \chapter{Engineering and Systems Enngineering}
+  %\chapterimage{}
+  \chapter{Engineering and Systems Enngineering}
     \section{Relationship of Science and Engineering}
     \section{Engineering Basis for Systems Engineering}
     \section{Engineering for the Systems Age}
     \section{Organizations for Advancing Systems}
     \section{Grand Challenges for Engineering}
     \section{Systems Engineering Education}
-    \section*{Summary and Extensions}
+    \section{Summary and Extensions: insert nameref}
        \index{Summary and Extensions}\input{Parts/ch_EngineeringandSystemsEnngineering_summary}
-    \section*{Problems, Questions, and Exercises}\input{Problems/Problems05}
+    \section{Problems and Exercises: insert nameref}\input{Problems/Problems05}
     
+  \chapter{Bringing Engineered Systems into Being}
+  
+  \chapter{Engineering Models and System Modeling}
+  
+  \chapter{Systems Engineering Process Phases}
+  
+\part{Analytics for Systems Analysis}
+
+  \chapter{Analytic Methods for Decision Analysis}
+  
+  \chapter{Decision Models for Alternatives}
+  
+  \chapter{Probability and Statistical Analysis}
+  
+\part{Decision Model Categories}
+
+  \chapter{Models for Money Flow Analysis}
+  
+  \chapter{Optimization Models and Methods}
+  
+  \chapter{Models for the Analysis of Queuing}
+  
+  \chapter{Control Models and Methods}
+  
+\part{Design Dependent Parameters}
+  
+  \chapter{Design for Reliability}
+  
+  \chapter{Design for Maintainability}
+  
+  \chapter{Design for Supportability and Availability}
+  
+  \chapter{Design for Producability and Sustainability}
+  
+  \chapter{Design for System and Product Usability}
+  
+  \chapter{Affordability of the System and Product}
+  
 %%----------------------------------------------------------------------------------------
 %	APPENDICES
-%%----------------------------------------------------------------------------------------
 \part{Appendices}
 \begin{appendices}
-\input{Appendices/AppenA}
-\input{Appendices/AppenB}
+	
+  \chapter{Consumables and Repairables}
+  \label{app:consumables-and-repairables}\input{Parts/app_ConsumablesandRepairables}
+  
+  \chapter{Tables}
+  \label{app:tables}\input{Parts/app_Tables}
+  
+  \chapter{References}
+  \label{app:references}\input{Parts/app_References}
+  
+  \chapter{Index}
+  \label{app:index}\input{Parts/app_Index}
+  
+  %% others included in SEA5
+  %\chapter{Functional Analysis}
+  %\chapter{Design and Managment Checklists}
+  %\chapter{Probability Theory and Analysis}
+  %\chapter{Probability and Statistical Tables}
+  %\chapter{Interest Factor Tables}
+  %\chapter{Finite Queuing Tables}
 \end{appendices}
+
 %%----------------------------------------------------------------------------------------
 %	INDEX
-%%----------------------------------------------------------------------------------------
+\cleardoublepage % Make sure the index starts on an odd (right side) page
+\phantomsection
+\setlength{\columnsep}{0.75cm} % Space between the 2 columns of the index
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}} % Add an Index heading to the table of contents
+\printindex % Output the index
+
+
 \end{document}

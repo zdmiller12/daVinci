@@ -1,0 +1,29 @@
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
+%%----------------------------------------------------------------------------------------
+%	PREAMBLE
+\input{Resources/shared/structure} % importing packages and defining settings, environments, and commands
+\usepackage{xr}
+\externaldocument{mainBook} % to use labels from main document
+\begin{document}
+	
+%%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+\newcommand{\subtitle}{Solution Manual}
+\input{Resources/shared/titlePage}
+
+%%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+\input{Resources/shared/copyright}
+
+%%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS
+\input{Resources/shared/toc}
+
+%%----------------------------------------------------------------------------------------
+%	MAIN CONTENT
+
+\todo{add chapter headings to seperate}
+\input{auxFiles/mainBook.sol.tex}
+
+\end{document}
