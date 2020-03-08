@@ -56,31 +56,32 @@
 %	LOADING DATA FOR PROBLEMS & SOLUTIONS
 %%----------------------------------------------------------------------------------------
 \usepackage{datatool} % I ADDED (for reading csv's)
-\newcommand{\V}[1]{\DTLfetch{Solutions01}{ch_pr_var}{#1}{\whichBook}} % renew every Problems## file for new chapter
-\IfFileExists{Problems/Solutions/Solutions01.csv}{\DTLloaddb{Solutions01}{Problems/Solutions/Solutions01.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions02.csv}{\DTLloaddb{Solutions02}{Problems/Solutions/Solutions02.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions03.csv}{\DTLloaddb{Solutions03}{Problems/Solutions/Solutions03.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions04.csv}{\DTLloaddb{Solutions04}{Problems/Solutions/Solutions04.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions05.csv}{\DTLloaddb{Solutions05}{Problems/Solutions/Solutions05.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions06.csv}{\DTLloaddb{Solutions06}{Problems/Solutions/Solutions06.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions07.csv}{\DTLloaddb{Solutions07}{Problems/Solutions/Solutions07.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions08.csv}{\DTLloaddb{Solutions08}{Problems/Solutions/Solutions08.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions09.csv}{\DTLloaddb{Solutions09}{Problems/Solutions/Solutions09.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions10.csv}{\DTLloaddb{Solutions10}{Problems/Solutions/Solutions10.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions11.csv}{\DTLloaddb{Solutions11}{Problems/Solutions/Solutions11.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions12.csv}{\DTLloaddb{Solutions12}{Problems/Solutions/Solutions12.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions13.csv}{\DTLloaddb{Solutions13}{Problems/Solutions/Solutions13.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions14.csv}{\DTLloaddb{Solutions14}{Problems/Solutions/Solutions14.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions15.csv}{\DTLloaddb{Solutions15}{Problems/Solutions/Solutions15.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions16.csv}{\DTLloaddb{Solutions16}{Problems/Solutions/Solutions16.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions17.csv}{\DTLloaddb{Solutions17}{Problems/Solutions/Solutions17.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions18.csv}{\DTLloaddb{Solutions18}{Problems/Solutions/Solutions18.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions19.csv}{\DTLloaddb{Solutions19}{Problems/Solutions/Solutions19.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions20.csv}{\DTLloaddb{Solutions20}{Problems/Solutions/Solutions20.csv}}{\relax}
-\IfFileExists{Problems/Solutions/Solutions21.csv}{\DTLloaddb{Solutions21}{Problems/Solutions/Solutions21.csv}}{\relax}
-%%----------------------------------------------------------------------------------------
+\newcommand{\V}[1]{\DTLfetch{Solutions01}{ch_pr_var}{#1}{\whichBook}} % needs to be renewed every Problems##.tex file for new chapter
+\newcommand{\File}[1]{Problems/Solutions/csvFiles/Solutions#1.csv}
+\IfFileExists{\File{01}}{\DTLloaddb{Solutions01}{\File{01}}}{\relax}
+\IfFileExists{\File{02}}{\DTLloaddb{Solutions02}{\File{02}}}{\relax}
+\IfFileExists{\File{03}}{\DTLloaddb{Solutions03}{\File{03}}}{\relax}
+\IfFileExists{\File{04}}{\DTLloaddb{Solutions04}{\File{04}}}{\relax}
+\IfFileExists{\File{05}}{\DTLloaddb{Solutions05}{\File{05}}}{\relax}
+\IfFileExists{\File{06}}{\DTLloaddb{Solutions06}{\File{06}}}{\relax}
+\IfFileExists{\File{07}}{\DTLloaddb{Solutions07}{\File{07}}}{\relax}
+\IfFileExists{\File{08}}{\DTLloaddb{Solutions08}{\File{08}}}{\relax}
+\IfFileExists{\File{09}}{\DTLloaddb{Solutions09}{\File{09}}}{\relax}
+\IfFileExists{\File{10}}{\DTLloaddb{Solutions10}{\File{10}}}{\relax}
+\IfFileExists{\File{11}}{\DTLloaddb{Solutions11}{\File{11}}}{\relax}
+\IfFileExists{\File{12}}{\DTLloaddb{Solutions12}{\File{12}}}{\relax}
+\IfFileExists{\File{13}}{\DTLloaddb{Solutions13}{\File{13}}}{\relax}
+\IfFileExists{\File{14}}{\DTLloaddb{Solutions14}{\File{14}}}{\relax}
+\IfFileExists{\File{15}}{\DTLloaddb{Solutions15}{\File{15}}}{\relax}
+\IfFileExists{\File{16}}{\DTLloaddb{Solutions16}{\File{16}}}{\relax}
+\IfFileExists{\File{17}}{\DTLloaddb{Solutions17}{\File{17}}}{\relax}
+\IfFileExists{\File{18}}{\DTLloaddb{Solutions18}{\File{18}}}{\relax}
+\IfFileExists{\File{19}}{\DTLloaddb{Solutions19}{\File{19}}}{\relax}
+\IfFileExists{\File{20}}{\DTLloaddb{Solutions20}{\File{20}}}{\relax}
+\IfFileExists{\File{21}}{\DTLloaddb{Solutions21}{\File{21}}}{\relax}
+%%--------------------------------------------------------------------------------------
 %	FONTS
-%%----------------------------------------------------------------------------------------
+%%--------------------------------------------------------------------------------------
 \usepackage{draftwatermark}
 \SetWatermarkText{DRAFT}
 \SetWatermarkScale{1}
