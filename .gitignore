@@ -1,3 +1,6 @@
+# personal run script
+run.sh
+
 # compiled python modules
 *.pyc
 
