@@ -9,4 +9,4 @@
 **/build/
 
 # pycache from pyinstaller
-**/__pycache__/
+**__pycache__**
