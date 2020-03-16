@@ -1,4 +1,5 @@
 numpy
 pandas
-itertools
+easysettings
+matplotlib
 pyqt5

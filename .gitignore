@@ -5,8 +5,8 @@
 *.exe
 
 # distrubution and build folders
-**/dist/
-**/build/
+dist/
+build/
 
 # pycache from pyinstaller
-**__pycache__**
+__pycache__/
