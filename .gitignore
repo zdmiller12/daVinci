@@ -1,6 +1,9 @@
 # ignore temp file (like from Excel)
 *~*
 
+# ignore aux files
+auxFiles/
+
 # ignore LaTeX compiled
 latexmkrc
 *.aux
