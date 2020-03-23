@@ -25,15 +25,15 @@
     </property>
     <layout class="QGridLayout" name="gridLayout">
      <item row="1" column="2">
-      <widget class="QComboBox" name="comboBox_which">
+      <widget class="QComboBox" name="comboBox_book">
        <item>
         <property name="text">
-         <string>SEA   (5th ed. international)</string>
+         <string>SEA</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>STEA (draft)</string>
+         <string>STEA</string>
         </property>
        </item>
       </widget>

@@ -8,7 +8,8 @@ Contact: zdmiller12@gmail.com
 import os, sys
 from easysettings import EasySettings
 
-from qpe.interface.contentHandler import ContentHandler as CH
+from qpe.mainHandler import MainHandler
+
 from PyQt5 import uic
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -18,10 +19,11 @@ from PyQt5.QtWidgets import *
 qtCreatorFile = os.path.join('.', 'qpe', 'resource', 'qpe_mainWindow.ui')
 Ui_MainWindow, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
-class QPE( QMainWindow, Ui_MainWindow ):
+class QPE( QMainWindow, Ui_MainWindow, MainHandler ):
     def __init__(self, parent=None):
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        MainHandler.__init__(self)
         self.setupUi(self)
         self.showMaximized()
         #
@@ -30,7 +32,7 @@ class QPE( QMainWindow, Ui_MainWindow ):
         ##    SIGNALS
         #
         #
-        self.comboBox_which.currentTextChanged.connect(self.dialog_update_SLOT)
+        self.comboBox_book.currentTextChanged.connect(self.dialog_update_SLOT)
         self.spinBox_chapter.valueChanged.connect(self.dialog_update_SLOT)
         self.spinBox_problem.valueChanged.connect(self.dialog_update_SLOT)
         #
@@ -41,7 +43,8 @@ class QPE( QMainWindow, Ui_MainWindow ):
     ##    SLOTS
     #
     def dialog_update_SLOT(self):
-        self.statusbar.showMessage("Viewing [Chapter {}] Problem {} from {}".format(CH.get_chapter(self), CH.get_problem(self), CH.get_version(self)))
+        self.update_statusbar()
+        self.update_labels()
     
 
 if __name__ == '__main__':
