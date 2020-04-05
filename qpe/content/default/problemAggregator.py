@@ -5,9 +5,9 @@ import pandas as pd
 
 v08_01_SEA  = {"FV" : [10000, "$"], "Ts": [8, "periods", "years"], "i": [6, "%"]}
 v08_01_STEA = {"FV" : [8000, "$"],  "Ts": [6, "periods", "years"], "i": [7, "%"]}
-p08_01 = "How much money must be invested to accumulate {FV} in {Ts} years at {i} compounded annually?"
+p08_01 = "How much money must be invested to accumulate {FV} in {Ts} years at {i} compounded annually?" # should be read from LaTeX
 
-class ProblemData:
+class ProblemAggregator:
     def __init__(self, parent=None):
         for book in ["SEA", "STEA"]:
             for ch in range(19):     # loop thru Chapters

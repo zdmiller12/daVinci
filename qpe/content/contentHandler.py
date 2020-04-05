@@ -1,11 +1,11 @@
 import pandas as pd
 
-from qpe.content.default.problemData import ProblemData
+from qpe.content.default.problemAggregator import ProblemAggregator
 
-class ContentHandler( ProblemData ):
+class ContentHandler(ProblemAggregator):
     def __init__(self, parent=None):
         self.d = pd.DataFrame(None, columns=["template", "vSEA", "vSTEA"])
-        ProblemData.__init__(self)
+        ProblemAggregator.__init__(self)
 
 
     def return_complete_problem(self, chapter, problem, book):
