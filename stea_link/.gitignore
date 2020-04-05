@@ -1,0 +1,22 @@
+# ignore temp file (like from Excel)
+*~*
+
+# ignore aux files
+auxFiles/
+
+# ignore LaTeX compiled
+latexmkrc
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.exc.tex
+*.fc.tex
+*.idx
+*.pdf
+*.ptc
+*.run.xml
+*.sol.tex
+*.synctex.gz
+*.toc
+*.log
