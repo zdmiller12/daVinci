@@ -21,6 +21,7 @@ Ui_MainWindow, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
 class QPE( QMainWindow, Ui_MainWindow, MainHandler ):
     def __init__(self, parent=None):
+        self.qpeDirectory = os.getcwd()
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         MainHandler.__init__(self)
