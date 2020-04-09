@@ -1,6 +1,6 @@
 import pandas as pd
 
-from qpe.content.default.problemAggregator import ProblemAggregator
+from qpe.content.variables.problemAggregator import ProblemAggregator
 
 class ContentHandler(ProblemAggregator):
     def __init__(self, parent=None):
