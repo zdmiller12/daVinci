@@ -19,7 +19,8 @@ from PyQt5.QtWidgets import *
 qtCreatorFile = os.path.join('.', 'qpe', 'resource', 'qpe_mainWindow.ui')
 Ui_MainWindow, QtBaseClass = uic.loadUiType( qtCreatorFile )
 
-class QPE( QMainWindow, Ui_MainWindow, MainHandler ):
+class QPE(QMainWindow, Ui_MainWindow, MainHandler):
+    
     def __init__(self, parent=None):
         self.qpeDirectory = os.getcwd()
         QMainWindow.__init__(self)
@@ -55,9 +56,9 @@ if __name__ == '__main__':
     # print("Height =", GetSystemMetrics(1))
 
     # this may not work with windows/mac
-    app     = QApplication( sys.argv )
-    screen  = app.desktop().screenGeometry()
-    w, h    = screen.width(), screen.height()
+    app      = QApplication(sys.argv)
+    screen   = app.desktop().screenGeometry()
+    w, h     = screen.width(), screen.height()
     qpe_main = QPE()
 
     # minimized
@@ -68,3 +69,4 @@ if __name__ == '__main__':
     qpe_main.show()
     app.exec()
     #sys.exit( app.exec_() )
+    

@@ -5,14 +5,15 @@ class InterfaceHandler:
 
     def update_labels(self):
         """
-        Updates the text in the problem and (TODO solution) boxes.
+        Updates the text in the exercise and solution labels.
         
         Returns nothing.
         """
-        self.label_problem.setText(self.return_complete_problem(self.current_chapter(), 
-                                                                self.current_problem(), 
-                                                                self.current_book()
-                                                                ))
+        self.label_exercise.setText(self.return_exercise_text(
+            self.current_chapter(), self.current_problem(), self.current_book()))
+
+        self.label_solution.setText(self.return_solution_text(
+            self.current_chapter(), self.current_problem(), self.current_book()))
 
     def current_chapter(self):
         """
@@ -47,7 +48,6 @@ class InterfaceHandler:
 
         Returns nothing.
         """
-        self.statusbar.showMessage("Viewing [Chapter {}] Problem {} from {}".format(self.current_chapter(), 
-                                                                                    self.current_problem(), 
-                                                                                    self.current_book()
-                                                                                    ))
+        self.statusbar.showMessage("Viewing [Chapter {}] Problem {} from {}".format(
+            self.current_chapter(), self.current_problem(), self.current_book()))
+        
