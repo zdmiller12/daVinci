@@ -45,8 +45,9 @@ class QPE(QMainWindow, Ui_MainWindow, MainHandler):
     ##    SLOTS
     #
     def dialog_update_SLOT(self):
-        self.update_statusbar()
+        self.update_tables()
         self.update_labels()
+        self.update_statusbar()
     
 
 if __name__ == '__main__':
