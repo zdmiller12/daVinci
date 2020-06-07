@@ -3,6 +3,7 @@ import os, glob
 import re
 
 from qpe.dataFrameModel import DataFrameModel
+from qpe.pandasModel import PandasModel
 
 class ContentHandler:
 
@@ -32,8 +33,11 @@ class ContentHandler:
             The exercise text, identified using regex from the latex files.
         """
         try:
-            return re.sub(self.regex_variable, lambda match: self.replace_variable(match.group(), book), 
+            return re.sub(
+                self.regex_variable, 
+                lambda match: self.replace_variable(match.group(), book), 
                 self.exercise_text[self.get_problem_formatted(chapter, problem)])
+
         except Exception as e:
             error = "Exercise {:0>2d}.{:0>2d} is not available.\n{}".format(chapter, problem, e)
             print(error)
@@ -49,8 +53,11 @@ class ContentHandler:
             The solution text, identified using regex from the latex files.
         """
         try:
-            return re.sub(self.regex_variable, lambda match: self.replace_variable(match.group(), book), 
+            return re.sub(
+                self.regex_variable, 
+                lambda match: self.replace_variable(match.group(), book), 
                 self.solution_text[self.get_problem_formatted(chapter, problem)])
+
         except Exception as e:
             error = "Solution {:0>2d}.{:0>2d} is not available.\n{}".format(chapter, problem, e)
             print(error)
@@ -59,7 +66,7 @@ class ContentHandler:
     def replace_variable(self, string, book):
         """
         Converts the input variable string into the appropriate value based on the book arg.
-        Replace - with _ because _ show up dumb in latex.
+        Replace - with _ because _ show up dumb in TexStudio.
 
         Returns
         -------
@@ -82,8 +89,15 @@ class ContentHandler:
             Relevant variabes, with columns [ch_pr_var, {book}, units, details]
         """
         df_variables = self.df[self.df[self.variable_header].str.contains(self.get_problem_formatted(chapter, problem))]
+        # if df_variables.empty:
+        #     return QStandardItemModel(0, 0)
+
         df_columns   = df_variables[[self.variable_header, book, self.units_header]]
-        return DataFrameModel(df_columns)
+
+        print(df_variables)
+        print(df_columns)
+        # return DataFrameModel(df_columns)
+        return PandasModel(df_columns)
             
     def get_problem_formatted(self, chapter, problem, book=None):
         """
